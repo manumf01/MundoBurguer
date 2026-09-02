@@ -106,9 +106,3 @@ export const ALLERGENS_IN_MENU: AllergenId[] = [
   'pescado',
   'crustaceos',
 ];
-
-export const GARNISHES: Record<string, { label: string; color: string }> = {
-  tomate: { label: 'Tomate', color: '#e5533d' },
-  cebolla: { label: 'Cebolla', color: '#c58fd6' },
-  lechuga: { label: 'Lechuga', color: '#9ccc4f' },
-};

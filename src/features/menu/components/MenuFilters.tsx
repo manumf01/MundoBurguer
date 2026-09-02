@@ -54,10 +54,10 @@ export function MenuFilters({
               aria-pressed={excluded}
               onClick={() => toggleAllergen(id)}
               className={cn(
-                'rounded-full border px-3 py-1 text-xs font-medium transition-colors',
+                'rounded-full border px-3 py-1 text-xs font-medium transition-all',
                 excluded
                   ? 'border-amber bg-amber/15 text-amber'
-                  : 'border-hair bg-white/5 text-cream-dim hover:text-cream'
+                  : 'border-hair bg-white/5 text-cream-dim hover:-translate-y-0.5 hover:border-amber hover:bg-amber/10 hover:text-cream focus-visible:border-amber'
               )}
             >
               {ALLERGENS[id].label}

@@ -1,9 +1,9 @@
 import { cn } from '@/lib/cn';
 import { Card, NewSeal } from '@/components/ui';
 import { AllergenRow } from '@/components/common';
-import { GARNISHES } from '../data/allergens';
 import type { Product } from '../types';
 import { ProductPrice } from './ProductPrice';
+import { GarnishRow } from './GarnishRow';
 
 interface ProductCardProps {
   product: Product;
@@ -18,17 +18,17 @@ export function ProductCard({ product, className }: ProductCardProps) {
       as="article"
       interactive
       className={cn(
-        'relative flex flex-col overflow-hidden',
+        'relative flex flex-col',
         hasImage ? 'gap-0' : 'gap-3 p-5',
         className
       )}
     >
       {product.isNew ? (
-        <NewSeal className="absolute -right-2 -top-3 z-10 w-12 rotate-6" />
+        <NewSeal className="absolute -right-3 -top-3.5 z-20 w-14 rotate-6" />
       ) : null}
 
       {hasImage ? (
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-bg">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-t-2xl bg-bg">
           <img
             src={product.image}
             alt={product.name}
@@ -52,32 +52,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
           </p>
         ) : null}
 
-        {product.garnish && product.garnish.length > 0 ? (
-          <ul
-            className="flex flex-wrap gap-1.5"
-            aria-label={`Se sirve con ${product.garnish
-              .map((g) => GARNISHES[g]?.label.toLowerCase())
-              .join(', ')}`}
-          >
-            {product.garnish.map((g) => (
-              <li
-                key={g}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-2 py-0.5 text-xs text-cream-dim"
-              >
-                <span
-                  className="h-1.5 w-1.5 rounded-full"
-                  style={{ backgroundColor: GARNISHES[g]?.color }}
-                  aria-hidden="true"
-                />
-                {GARNISHES[g]?.label}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
         <div className="mt-auto flex flex-col gap-3 pt-1">
           <ProductPrice product={product} />
-          <AllergenRow allergens={product.allergens} />
+          {(product.garnish && product.garnish.length > 0) ||
+          product.allergens.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+              <GarnishRow garnish={product.garnish ?? []} />
+              <AllergenRow allergens={product.allergens} />
+            </div>
+          ) : null}
         </div>
       </div>
     </Card>

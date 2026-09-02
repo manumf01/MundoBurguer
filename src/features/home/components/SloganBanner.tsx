@@ -18,7 +18,7 @@ export function SloganBanner() {
         >
           {site.slogan}
         </motion.p>
-        <p className="mt-3 font-display text-sm uppercase tracking-[0.3em] text-amber">
+        <p className="mt-4 font-display text-lg uppercase tracking-[0.18em] text-amber sm:text-2xl">
           Mundo Burguer · Moriles
         </p>
       </div>

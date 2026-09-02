@@ -9,9 +9,17 @@ const routeUrl = (lat: number, lng: number) =>
   `https://www.google.com/maps/dir/?api=1&origin=${lat},${lng}&destination=${destination}&travelmode=driving`;
 
 function openMaps(url: string) {
-  const tab = window.open(url, '_blank', 'noopener,noreferrer');
-  // Si el navegador bloquea la pestaña, navegamos en la actual.
-  if (!tab) window.location.assign(url);
+  // Enlace temporal + click: abre SIEMPRE en pestaña nueva y nunca navega la
+  // actual (window.open con 'noopener' devuelve null y disparaba un fallback
+  // que cargaba Maps en esta pestaña, perdiendo la navegación de la web).
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 /**

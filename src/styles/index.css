@@ -1,0 +1,283 @@
+@import 'tailwindcss';
+@import './fonts.css';
+
+/* ============================================================================
+   Mundo Burguer — design tokens
+   Paleta y tipografía derivadas de la carta oficial (Z CARTA MB 2024).
+   ========================================================================== */
+@theme {
+  /* Fondos: granate muy oscuro / madera casi negra */
+  --color-bg: #1c0a08;
+  --color-bg-elevated: #2a0f0c;
+  --color-surface: #3a1512;
+  --color-surface-2: #4a1a15;
+
+  /* Rojo de marca (insignia del logo) */
+  --color-brand: #9e1b1b;
+  --color-brand-dark: #5c0f0f;
+  --color-brand-light: #c62b2b;
+
+  /* Ámbar / oro: precios y destacados */
+  --color-amber: #f5b301;
+  --color-amber-bright: #ffcf3f;
+  --color-orange: #e8721c;
+
+  /* Verde lima: acentos de pizzas / "fresco" */
+  --color-lime: #9ccc4f;
+
+  /* Texto */
+  --color-cream: #f7e7c9;
+  --color-cream-dim: #d8c4a0;
+  --color-cream-mute: #a8926f;
+
+  /* Sello "¡Nuevo!" */
+  --color-seal: #d21f26;
+
+  /* Bordes */
+  --color-hair: rgb(255 255 255 / 0.08);
+  --color-hair-strong: rgb(255 255 255 / 0.16);
+
+  /* Tipografía — familias definidas en src/styles/fonts.css.
+     Para probar otra fuente, cambia SOLO estos tres valores. */
+  --font-sans:
+    'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-display: 'Anton', 'Oswald', 'Arial Narrow', 'Impact', sans-serif;
+  --font-script: 'Yellowtail', 'Brush Script MT', 'Segoe Script', cursive;
+
+  /* Layout */
+  --spacing-nav: 4.5rem;
+  --radius-card: 1rem;
+}
+
+/* ============================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: var(--spacing-nav);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    /* >= 1.15 evita que el resaltado de selección de una línea pise a la de
+       arriba en titulares de varias líneas (Anton tiene ascendente alto). */
+    line-height: 1.18;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--color-cream);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Cursor de "mano" en cualquier elemento accionable (Tailwind v4 ya no lo
+     pone por defecto en <button>). */
+  button,
+  [role='button'],
+  summary,
+  label[for],
+  a[href] {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-bg);
+  }
+
+  /* Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-surface-2) transparent;
+  }
+}
+
+/* ============================================================================
+   Utilidades de marca
+   ========================================================================== */
+@layer utilities {
+  /* Degradado "calor" amarillo -> naranja -> rojo (titulares de la carta) */
+  .text-heat {
+    background-image: linear-gradient(
+      92deg,
+      var(--color-amber-bright) 0%,
+      var(--color-orange) 45%,
+      var(--color-brand-light) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Textura de grano sutil */
+  .bg-grain {
+    position: relative;
+  }
+  .bg-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  /* Resplandor cálido radial */
+  .glow-warm {
+    background:
+      radial-gradient(
+        60% 55% at 50% 0%,
+        rgb(232 114 28 / 0.28) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        45% 40% at 85% 20%,
+        rgb(158 27 27 / 0.35) 0%,
+        transparent 75%
+      );
+  }
+
+  /* Contenedor centrado */
+  .container-mb {
+    width: 100%;
+    max-width: 75rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-mb {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Difuminado en los bordes de un carrusel horizontal (pista de scroll). */
+  .scroll-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 1.5rem,
+      #000 calc(100% - 1.5rem),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 1.5rem,
+      #000 calc(100% - 1.5rem),
+      transparent
+    );
+  }
+  @media (min-width: 768px) {
+    .scroll-fade-x {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+}
+
+/* ============================================================================
+   Animaciones
+   ========================================================================== */
+@keyframes mb-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes mb-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Resalta la tarjeta a la que se llega desde "Sobre nosotros".
+   Con retardo para que el destello coincida con el final del scroll. */
+@keyframes mb-highlight {
+  0%,
+  12% {
+    box-shadow:
+      0 0 0 0 rgb(245 179 1 / 0),
+      0 0 0 0 rgb(245 179 1 / 0);
+    transform: scale(1);
+  }
+  30%,
+  62% {
+    box-shadow:
+      0 0 0 4px rgb(245 179 1 / 0.95),
+      0 12px 40px -6px rgb(245 179 1 / 0.45);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgb(245 179 1 / 0),
+      0 0 0 0 rgb(245 179 1 / 0);
+    transform: scale(1);
+  }
+}
+
+.anim-float {
+  animation: mb-float 6s ease-in-out infinite;
+}
+
+.anim-highlight {
+  animation: mb-highlight 3s ease-out 0.35s 1;
+  border-radius: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-float,
+  .anim-highlight {
+    animation: none;
+  }
+}

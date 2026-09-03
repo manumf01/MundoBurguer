@@ -374,7 +374,6 @@ export const MENU: Product[] = [
       'Doble burger smasheada de vacuno, bacon a la plancha, pepinillos, doble queso gouda gratinado, salsa americana burger, salsa de dulce de leche y doble donut tostado a la plancha. Acompañada de patatas crispers.',
     category: 'premium',
     price: 12.9,
-    isNew: true,
     image: imgDonutBurger,
     allergens: [],
   },
@@ -808,7 +807,6 @@ export const MENU: Product[] = [
     description: 'Postre casero individual.',
     category: 'postres',
     price: 4.0,
-    isNew: true,
     image: imgLotus,
     allergens: ['lacteos', 'soja', 'gluten'],
   },
@@ -818,7 +816,6 @@ export const MENU: Product[] = [
     description: 'Postre casero individual.',
     category: 'postres',
     price: 4.0,
-    isNew: true,
     image: imgKinder,
     allergens: ['lacteos', 'frutos_cascara', 'soja', 'gluten'],
   },
@@ -828,7 +825,6 @@ export const MENU: Product[] = [
     description: 'Postre casero individual.',
     category: 'postres',
     price: 4.0,
-    isNew: true,
     image: imgTartaQueso,
     allergens: ['lacteos', 'frutos_cascara', 'soja', 'gluten', 'huevos'],
   },
@@ -836,8 +832,8 @@ export const MENU: Product[] = [
 
 /** Productos destacados para la página de inicio. */
 export const FEATURED_IDS = [
-  'menu-morileno',
-  'menu-americano',
-  'menu-tejano',
-  'menu-dakota',
+  'premium-la-intensa',
+  'premium-la-reverde',
+  'premium-mb-donut-burger',
+  'suelta-campero',
 ];

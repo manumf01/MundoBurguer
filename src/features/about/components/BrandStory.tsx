@@ -1,4 +1,4 @@
-import { Section } from '@/components/ui';
+import { Section, Eyebrow } from '@/components/ui';
 import { SloganLockup } from '@/components/common';
 import { site } from '@/config/site';
 
@@ -7,7 +7,7 @@ export function BrandStory() {
     <Section id="historia">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div className="flex flex-col gap-5">
-          <p className="font-script text-2xl text-amber">Nuestra historia</p>
+          <Eyebrow>Nuestra historia</Eyebrow>
           <h1 className="text-heat text-4xl sm:text-5xl">
             El sabor de la auténtica hamburguesa
           </h1>

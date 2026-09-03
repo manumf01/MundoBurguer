@@ -4,5 +4,6 @@ export { AllergenIcon, AllergenRow } from './AllergenIcon';
 export { AllergenLegend } from './AllergenLegend';
 export { SocialLinks } from './SocialLinks';
 export { MapEmbed } from './MapEmbed';
+export { IconPopover } from './IconPopover';
 export { ScrollToTop } from './ScrollToTop';
 export { Reveal } from './Reveal';

@@ -21,7 +21,7 @@ export function AllergenLegend({ className, only }: AllergenLegendProps) {
             key={id}
             className="flex items-center gap-2 text-sm text-cream-dim"
           >
-            <AllergenIcon id={id} />
+            <AllergenIcon id={id} withPopover={false} />
             <span>{ALLERGENS[id].label}</span>
           </li>
         ))}

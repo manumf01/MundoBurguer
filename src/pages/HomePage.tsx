@@ -1,7 +1,7 @@
 import { Seo, RestaurantJsonLd } from '@/lib/seo';
 import {
   Hero,
-  SloganBanner,
+  BrandBanner,
   Destacados,
   ConfiguraTeaser,
   InfoStrip,
@@ -18,7 +18,7 @@ export function HomePage() {
       />
       <RestaurantJsonLd />
       <Hero />
-      <SloganBanner />
+      <BrandBanner />
       <Destacados />
       <ConfiguraTeaser />
       <InfoStrip />

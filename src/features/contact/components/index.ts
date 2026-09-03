@@ -1,3 +1,3 @@
 export { ContactChannels } from './ContactChannels';
-export { LocationCard } from './LocationCard';
+export { ContactFaq } from './ContactFaq';
 export { DirectionsButton } from './DirectionsButton';

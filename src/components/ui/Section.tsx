@@ -1,6 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { Container } from './Container';
+import { Eyebrow } from './Eyebrow';
 
 interface SectionProps extends HTMLAttributes<HTMLElement> {
   /** id para el scrollspy / anclas de la carta. */
@@ -53,11 +54,7 @@ export function SectionHeading({
         className
       )}
     >
-      {eyebrow ? (
-        <span className="font-script text-xl text-amber sm:text-2xl">
-          {eyebrow}
-        </span>
-      ) : null}
+      {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2 className="text-heat text-3xl sm:text-4xl md:text-5xl">{title}</h2>
       {description ? (
         <p className="max-w-2xl text-cream-dim">{description}</p>

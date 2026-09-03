@@ -43,7 +43,7 @@ export function SocialLinks({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 text-cream-dim transition-colors hover:text-cream"
           >
-            <FacebookGlyph className="h-5 w-5 text-[#1877F2]" />
+            <FacebookGlyph className="h-5 w-5 text-amber" />
             {site.social.facebookLabel}
           </a>
         </li>
@@ -54,13 +54,18 @@ export function SocialLinks({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 text-cream-dim transition-colors hover:text-cream"
           >
-            <InstagramGlyph className="h-5 w-5 text-[#E1306C]" />
+            <InstagramGlyph className="h-5 w-5 text-amber" />
             {site.social.instagramLabel}
           </a>
         </li>
       </ul>
     );
   }
+
+  // Botones redondos con la gama de la web (rojo de marca + ámbar), a juego
+  // con el resto de <Button> pero un punto más resaltados.
+  const chip =
+    'grid h-11 w-11 place-items-center rounded-full border border-amber/40 bg-brand/25 text-amber shadow-[0_8px_24px_-12px_rgba(198,43,43,0.7)] transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-0.5 hover:border-amber/70 hover:bg-brand/40 hover:text-amber-bright active:scale-[0.97]';
 
   return (
     <div className={cn('flex items-center gap-3', className)}>
@@ -69,18 +74,18 @@ export function SocialLinks({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Facebook — ${site.social.facebookLabel}`}
-        className="grid h-11 w-11 place-items-center rounded-full bg-[#1877F2] text-white transition-transform hover:scale-105"
+        className={chip}
       >
-        <FacebookGlyph className="h-6 w-6" />
+        <FacebookGlyph className="h-5 w-5" />
       </a>
       <a
         href={site.social.instagram}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Instagram — ${site.social.instagramLabel}`}
-        className="grid h-11 w-11 place-items-center rounded-full bg-[linear-gradient(135deg,#F58529_0%,#DD2A7B_55%,#8134AF_100%)] text-white transition-transform hover:scale-105"
+        className={chip}
       >
-        <InstagramGlyph className="h-6 w-6" />
+        <InstagramGlyph className="h-5 w-5" />
       </a>
     </div>
   );

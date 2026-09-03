@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Seo } from '@/lib/seo';
-import { Container } from '@/components/ui';
+import { Container, Eyebrow } from '@/components/ui';
 import { useMenu } from '@/features/menu/hooks/useMenu';
 import {
   CategoryNav,
@@ -100,7 +100,7 @@ export function MenuPage() {
 
       <Container className="pt-12">
         <header className="flex flex-col gap-3">
-          <p className="font-script text-2xl text-amber">Nuestra carta</p>
+          <Eyebrow>Nuestra carta</Eyebrow>
           <h1 className="text-heat text-4xl sm:text-5xl">
             Todo lo que cocinamos
           </h1>

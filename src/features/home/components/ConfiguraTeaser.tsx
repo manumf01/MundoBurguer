@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { Section, Button, Card } from '@/components/ui';
+import { Section, Button, Card, Eyebrow } from '@/components/ui';
 import { Reveal } from '@/components/common';
 import { formatDelta } from '@/lib/format';
 import { menuConfig } from '@/features/menu/data/menuConfig';
@@ -18,7 +18,7 @@ export function ConfiguraTeaser() {
       <Reveal>
         <Card className="grid gap-8 overflow-hidden border-amber/25 bg-linear-to-br from-brand/30 via-surface/70 to-surface/70 p-8 md:grid-cols-2 md:p-12">
           <div className="flex flex-col justify-center gap-4">
-            <p className="font-script text-2xl text-amber">A tu manera</p>
+            <Eyebrow>A tu manera</Eyebrow>
             <h2 className="text-heat text-3xl sm:text-4xl">
               {menuConfig.heading}
             </h2>

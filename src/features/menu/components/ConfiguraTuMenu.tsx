@@ -1,7 +1,7 @@
 import { Check, Plus } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { formatDelta } from '@/lib/format';
-import { Card } from '@/components/ui';
+import { Card, Eyebrow } from '@/components/ui';
 import { AllergenRow } from '@/components/common';
 import { menuConfig } from '../data/menuConfig';
 
@@ -53,7 +53,7 @@ export function ConfiguraTuMenu({
         className
       )}
     >
-      <p className="font-script text-2xl text-amber">Personalízalo</p>
+      <Eyebrow>Personalízalo</Eyebrow>
       <h2 id="configura-titulo" className="text-heat mt-1 text-2xl sm:text-3xl">
         {menuConfig.heading}
       </h2>

@@ -1,5 +1,6 @@
 import type { ReactElement, SVGProps } from 'react';
 import { cn } from '@/lib/cn';
+import { IconPopover } from '@/components/common/IconPopover';
 import type { GarnishId } from '../types';
 
 const base: SVGProps<SVGSVGElement> = {
@@ -75,13 +76,12 @@ export function GarnishRow({ garnish, className }: GarnishRowProps) {
         const { label, color, Icon } = GARNISH_META[g];
         return (
           <li key={g}>
-            <span
-              className="inline-flex items-center rounded-full border border-hair bg-black/25 p-1"
-              title={label}
-            >
-              <Icon width={14} height={14} style={{ color }} />
-              <span className="sr-only">{label}</span>
-            </span>
+            <IconPopover label={label}>
+              <span className="inline-flex items-center rounded-full border border-hair bg-black/25 p-1">
+                <Icon width={14} height={14} style={{ color }} />
+                <span className="sr-only">{label}</span>
+              </span>
+            </IconPopover>
           </li>
         );
       })}

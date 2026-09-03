@@ -1,5 +1,5 @@
 import { Phone, MessageCircle } from 'lucide-react';
-import { Card, Button } from '@/components/ui';
+import { Card, Button, Eyebrow } from '@/components/ui';
 import { SocialLinks } from '@/components/common';
 import { site } from '@/config/site';
 import { contactInfo } from '../data/contactInfo';
@@ -8,7 +8,7 @@ export function ContactChannels() {
   return (
     <Card className="flex flex-col gap-6 p-6 sm:p-8">
       <div>
-        <p className="font-script text-2xl text-amber">Llámanos</p>
+        <Eyebrow>Llámanos</Eyebrow>
         <a
           href={contactInfo.phone.href}
           className="mt-1 block font-display text-4xl text-cream transition-colors hover:text-amber sm:text-5xl"

@@ -1,4 +1,4 @@
-import { Section, Card } from '@/components/ui';
+import { Section, Card, Eyebrow } from '@/components/ui';
 import { SocialLinks, Reveal } from '@/components/common';
 
 export function SocialCta() {
@@ -6,7 +6,7 @@ export function SocialCta() {
     <Section spacing="sm">
       <Reveal>
         <Card className="flex flex-col items-center gap-5 p-8 text-center sm:p-12">
-          <p className="font-script text-2xl text-amber">Síguenos</p>
+          <Eyebrow>Síguenos</Eyebrow>
           <h2 className="text-heat text-2xl sm:text-3xl">
             Novedades, promos y mucha hamburguesa
           </h2>

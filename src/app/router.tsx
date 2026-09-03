@@ -4,32 +4,32 @@ import { HomePage } from '@/pages/HomePage';
 import { features } from '@/config/features';
 
 /**
- * Rutas condicionadas por feature flag. Hoy vacío: la web es informativa.
+ * Rutas condicionadas por feature flag. Por ahora están vacías: la web es informativa.
  * Cuando se active `onlineOrdering` / `reservations`, se añaden aquí sus
  * páginas (lazy) y el resto de la app ya está preparada (ver src/config/features.ts).
  */
 const futureRoutes: RouteObject[] = [
   ...(features.onlineOrdering
     ? [
-        {
-          path: 'pedir',
-          lazy: async () => {
-            const m = await import('@/pages/NotFoundPage');
-            return { Component: m.NotFoundPage };
-          },
+      {
+        path: 'pedir',
+        lazy: async () => {
+          const m = await import('@/pages/NotFoundPage');
+          return { Component: m.NotFoundPage };
         },
-      ]
+      },
+    ]
     : []),
   ...(features.reservations
     ? [
-        {
-          path: 'reservar',
-          lazy: async () => {
-            const m = await import('@/pages/NotFoundPage');
-            return { Component: m.NotFoundPage };
-          },
+      {
+        path: 'reservar',
+        lazy: async () => {
+          const m = await import('@/pages/NotFoundPage');
+          return { Component: m.NotFoundPage };
         },
-      ]
+      },
+    ]
     : []),
 ];
 

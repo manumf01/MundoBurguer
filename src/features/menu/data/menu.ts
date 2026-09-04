@@ -12,6 +12,47 @@ import imgLotus from '@/assets/menu/tartitas-lotus.webp';
 import imgKinder from '@/assets/menu/natillas-kinder.webp';
 import imgTartaQueso from '@/assets/menu/tarta-queso.webp';
 
+// Fotos de los menús (src/docs/*.jpg|png).
+import imgInfantil from '@/assets/menu/infantil.webp';
+import imgAmericano from '@/assets/menu/americano.webp';
+import imgItaliano from '@/assets/menu/italiano.webp';
+import imgMejicano from '@/assets/menu/mejicano.webp';
+import imgSueco from '@/assets/menu/sueco.webp';
+import imgFrances from '@/assets/menu/frances.webp';
+import imgRuso from '@/assets/menu/ruso.webp';
+import imgChileno from '@/assets/menu/chileno.webp';
+import imgBelga from '@/assets/menu/belga.webp';
+import imgIberico from '@/assets/menu/iberico.webp';
+import imgParisino from '@/assets/menu/parisino.webp';
+import imgAzteca from '@/assets/menu/azteca.webp';
+import imgMaya from '@/assets/menu/maya.webp';
+import imgJalapeno from '@/assets/menu/jalapeno.webp';
+import imgMorileno from '@/assets/menu/morileno.webp';
+import imgEspanol from '@/assets/menu/espanol.webp';
+import imgPortugues from '@/assets/menu/portugues.webp';
+import imgCordobes from '@/assets/menu/cordobes.webp';
+import imgBerlines from '@/assets/menu/berlines.webp';
+import imgTurco from '@/assets/menu/turco.webp';
+import imgBritanico from '@/assets/menu/britanico.webp';
+import imgNeoyorkino from '@/assets/menu/neoyorquino.webp';
+import imgMontana from '@/assets/menu/montana.webp';
+import imgTejano from '@/assets/menu/tejano.webp';
+import imgDakota from '@/assets/menu/dakota.webp';
+
+// Fotos de complementos, raciones, bocapizza y sueltas (src/docs/*.png).
+import imgAndorrana from '@/assets/menu/andorrana.webp';
+import imgAndorranaQueso from '@/assets/menu/andorrana-queso.webp';
+import imgPerritoCaliente from '@/assets/menu/perrito-caliente.webp';
+import imgArosCebolla from '@/assets/menu/aros-cebolla.webp';
+import imgNuggetsPollo from '@/assets/menu/nuggets-pollo.webp';
+import imgBolitasQueso from '@/assets/menu/bolitas-queso.webp';
+import imgCrujientesPollo from '@/assets/menu/crujientes-pollo.webp';
+import imgEnsaladaCesar from '@/assets/menu/ensalada-cesar.webp';
+import imgEnsaladaMixta from '@/assets/menu/ensalada-mixta.webp';
+import imgNachosTresSalsas from '@/assets/menu/nachos-tres-salsas.webp';
+import imgPlatoKebab from '@/assets/menu/plato-kebab.webp';
+import imgBocapizza from '@/assets/menu/bocapizza.webp';
+
 /**
  * Carta oficial de Mundo Burguer — transcripción íntegra de
  * `src/docs/Z CARTA MB 2024.pdf` + novedades de `src/docs/*.png`.
@@ -85,6 +126,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa con queso y patatas ó nuggets con patatas.',
     category: 'menus',
     price: 5.0,
+    image: imgInfantil,
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
   {
@@ -94,6 +136,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 6.5,
     isPopular: true,
+    image: imgAmericano,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'soja', 'lacteos', 'mostaza', 'sesamo', 'sulfitos'],
   },
@@ -103,6 +146,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, queso, mostaza y pepinillos.',
     category: 'menus',
     price: 6.5,
+    image: imgItaliano,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'lacteos', 'mostaza', 'sesamo', 'sulfitos'],
   },
@@ -112,6 +156,7 @@ export const MENU: Product[] = [
     description: 'Pollo empanado, queso y salsa brava.',
     category: 'menus',
     price: 6.5,
+    image: imgMejicano,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'lacteos', 'sesamo'],
   },
@@ -121,6 +166,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, queso, lomo sajonia y cebolla crujiente.',
     category: 'menus',
     price: 6.5,
+    image: imgSueco,
     garnish: ['tomate', 'lechuga'],
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
@@ -130,6 +176,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, bacon, tortilla francesa y queso.',
     category: 'menus',
     price: 6.5,
+    image: imgFrances,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
@@ -139,6 +186,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa doble, queso, pepinillos y ketchup.',
     category: 'menus',
     price: 7.0,
+    image: imgRuso,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo'],
   },
@@ -148,6 +196,7 @@ export const MENU: Product[] = [
     description: 'Pollo empanado, bacon, nachos, queso y salsa césar.',
     category: 'menus',
     price: 7.0,
+    image: imgChileno,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos', 'mostaza', 'sesamo'],
   },
@@ -157,6 +206,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, nachos, queso y salsa curry de mango.',
     category: 'menus',
     price: 7.0,
+    image: imgBelga,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: [
       'gluten',
@@ -174,6 +224,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, tortilla de patatas, jamón serrano y queso.',
     category: 'menus',
     price: 7.0,
+    image: imgIberico,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos', 'sesamo'],
   },
@@ -183,6 +234,7 @@ export const MENU: Product[] = [
     description: 'Hamburguesa, aros de cebolla y salsa de queso cheddar.',
     category: 'menus',
     price: 7.5,
+    image: imgParisino,
     garnish: ['tomate', 'lechuga'],
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
@@ -192,6 +244,7 @@ export const MENU: Product[] = [
     description: 'Pollo empanado, verdura, queso, guacamole y salsa mejicana.',
     category: 'menus',
     price: 7.5,
+    image: imgAzteca,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'lacteos', 'sesamo'],
   },
@@ -202,6 +255,7 @@ export const MENU: Product[] = [
       'Hamburguesa de ternera, bacon, lechuga, queso de cabra, cebolla caramelizada y salsa balsámica.',
     category: 'menus',
     price: 7.5,
+    image: imgMaya,
     garnish: ['lechuga'],
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
@@ -212,6 +266,7 @@ export const MENU: Product[] = [
       'Hamburguesa, huevo frito, jalapeños, queso y salsa de miel y mostaza.',
     category: 'menus',
     price: 7.5,
+    image: imgJalapeno,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos'],
   },
@@ -222,6 +277,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 7.9,
     isPopular: true,
+    image: imgMorileno,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos'],
   },
@@ -231,6 +287,7 @@ export const MENU: Product[] = [
     description: 'Lomo adobado, bacon y queso.',
     category: 'menus',
     price: 6.9,
+    image: imgEspanol,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'soja', 'lacteos'],
   },
@@ -240,6 +297,7 @@ export const MENU: Product[] = [
     description: 'Pechuga de pollo o lomo y queso.',
     category: 'menus',
     price: 6.9,
+    image: imgPortugues,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'lacteos'],
   },
@@ -250,6 +308,7 @@ export const MENU: Product[] = [
       'Lomo, tortilla francesa, jamón serrano, pimiento verde y queso.',
     category: 'menus',
     price: 7.5,
+    image: imgCordobes,
     allergens: ['gluten', 'huevos'],
   },
   {
@@ -258,6 +317,7 @@ export const MENU: Product[] = [
     description: 'Tortilla de patatas, queso y jamón york.',
     category: 'menus',
     price: 6.9,
+    image: imgBerlines,
     allergens: ['gluten', 'huevos', 'lacteos'],
   },
   {
@@ -266,6 +326,7 @@ export const MENU: Product[] = [
     description: 'Kebab en pan de torta, pollo, verdura y salsa de yogur.',
     category: 'menus',
     price: 6.5,
+    image: imgTurco,
     garnish: ['tomate', 'cebolla', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos'],
   },
@@ -276,6 +337,7 @@ export const MENU: Product[] = [
       'Sándwich de jamón york, queso, atún, palitos de mar, tortilla francesa, mahonesa y ketchup.',
     category: 'menus',
     price: 6.0,
+    image: imgBritanico,
     garnish: ['tomate', 'lechuga'],
     allergens: ['gluten', 'huevos', 'lacteos', 'pescado'],
   },
@@ -287,6 +349,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 8.0,
     isNew: true,
+    image: imgNeoyorkino,
     garnish: ['tomate', 'lechuga'],
     allergens: ['gluten', 'huevos', 'soja', 'lacteos', 'mostaza', 'sulfitos'],
   },
@@ -298,6 +361,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 9.0,
     isNew: true,
+    image: imgMontana,
     allergens: ['gluten', 'huevos', 'lacteos'],
   },
   {
@@ -308,6 +372,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 10.0,
     isNew: true,
+    image: imgTejano,
     allergens: ['gluten', 'huevos', 'lacteos', 'mostaza'],
   },
   {
@@ -318,6 +383,7 @@ export const MENU: Product[] = [
     category: 'menus',
     price: 11.0,
     isNew: true,
+    image: imgDakota,
     allergens: ['gluten', 'huevos', 'lacteos', 'mostaza'],
   },
 
@@ -527,6 +593,7 @@ export const MENU: Product[] = [
     name: 'Bolitas de queso',
     category: 'complementos',
     tiers: COMPLEMENTO_TIERS_A,
+    image: imgBolitasQueso,
     allergens: ['gluten', 'lacteos'],
   },
   {
@@ -534,6 +601,7 @@ export const MENU: Product[] = [
     name: 'Nuggets de pollo',
     category: 'complementos',
     tiers: COMPLEMENTO_TIERS_A,
+    image: imgNuggetsPollo,
     allergens: ['gluten', 'huevos', 'soja', 'lacteos'],
   },
   {
@@ -541,6 +609,7 @@ export const MENU: Product[] = [
     name: 'Aros de cebolla',
     category: 'complementos',
     tiers: COMPLEMENTO_TIERS_A,
+    image: imgArosCebolla,
     allergens: ['gluten'],
   },
   {
@@ -607,6 +676,7 @@ export const MENU: Product[] = [
     description: 'Lechuga, tomate, maíz y atún.',
     category: 'raciones',
     price: 3.5,
+    image: imgEnsaladaMixta,
     allergens: ['pescado', 'sulfitos'],
   },
   {
@@ -616,6 +686,7 @@ export const MENU: Product[] = [
       'Lechuga, tomate, maíz, pechuga de pollo, daditos de queso y salsa césar.',
     category: 'raciones',
     price: 4.5,
+    image: imgEnsaladaCesar,
     allergens: ['lacteos', 'huevos', 'sulfitos', 'mostaza'],
   },
   {
@@ -630,6 +701,7 @@ export const MENU: Product[] = [
     name: 'Crujientes de pollo y patatas',
     category: 'raciones',
     price: 6.0,
+    image: imgCrujientesPollo,
     allergens: ['gluten', 'huevos'],
   },
   {
@@ -639,6 +711,7 @@ export const MENU: Product[] = [
       'Lechuga, tomate, cebolla, carne de kebab, patatas y salsa de yogur.',
     category: 'raciones',
     price: 6.0,
+    image: imgPlatoKebab,
     allergens: ['huevos', 'soja', 'lacteos'],
   },
   {
@@ -648,6 +721,7 @@ export const MENU: Product[] = [
       'Nachos mejicanos, guacamole, salsa cheddar, salsa cremfres, ternera, tomate y cebolla.',
     category: 'raciones',
     price: 11.0,
+    image: imgNachosTresSalsas,
     allergens: ['lacteos', 'soja', 'gluten', 'sulfitos'],
   },
   {
@@ -671,6 +745,7 @@ export const MENU: Product[] = [
       { label: 'Normal', price: 3.0 },
       { label: 'XL', price: 5.0 },
     ],
+    image: imgBocapizza,
     allergens: ['gluten', 'lacteos'],
   },
 
@@ -740,6 +815,7 @@ export const MENU: Product[] = [
     name: 'Hamburguesa Andorrana',
     category: 'sueltas',
     price: 2.0,
+    image: imgAndorrana,
     allergens: ['gluten', 'soja', 'sesamo', 'sulfitos'],
   },
   {
@@ -747,6 +823,7 @@ export const MENU: Product[] = [
     name: 'Hamburguesa Andorrana con queso',
     category: 'sueltas',
     price: 2.5,
+    image: imgAndorranaQueso,
     allergens: ['gluten', 'soja', 'lacteos', 'sesamo', 'sulfitos'],
   },
   {
@@ -754,6 +831,7 @@ export const MENU: Product[] = [
     name: 'Perrito caliente',
     category: 'sueltas',
     price: 2.0,
+    image: imgPerritoCaliente,
     allergens: ['gluten', 'soja'],
   },
   {

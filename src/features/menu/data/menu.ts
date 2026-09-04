@@ -912,6 +912,6 @@ export const MENU: Product[] = [
 export const FEATURED_IDS = [
   'premium-la-intensa',
   'premium-la-reverde',
-  'premium-mb-donut-burger',
+  'menu-americano',
   'suelta-campero',
 ];

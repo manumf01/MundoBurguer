@@ -1,5 +1,5 @@
 import { Section, Eyebrow } from '@/components/ui';
-import { SloganLockup } from '@/components/common';
+import { BrandLogo } from '@/components/common';
 import { site } from '@/config/site';
 
 export function BrandStory() {
@@ -28,8 +28,8 @@ export function BrandStory() {
           </p>
         </div>
 
-        <div className="flex justify-center rounded-3xl border border-hair bg-grain glow-warm p-10">
-          <SloganLockup />
+        <div className="flex justify-center p-10">
+          <BrandLogo className="h-auto w-full max-w-[26rem] select-none drop-shadow-[0_12px_40px_rgba(0,0,0,0.55)]" />
         </div>
       </div>
     </Section>

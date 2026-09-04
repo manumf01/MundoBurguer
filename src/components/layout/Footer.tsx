@@ -14,7 +14,10 @@ export function Footer() {
       <Container className="py-14">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="flex flex-col gap-4">
-            <BrandLogo variant="wordmark" />
+            <div className="flex items-center gap-3">
+              <BrandLogo className="h-14 shrink-0" decorative />
+              <BrandLogo variant="wordmark" />
+            </div>
             <p className="font-script text-xl text-amber">{site.slogan}</p>
             <SocialLinks className="mt-1" />
           </div>

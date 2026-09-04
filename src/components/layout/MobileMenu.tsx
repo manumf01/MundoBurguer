@@ -19,9 +19,9 @@ export function MobileMenu() {
         <button
           type="button"
           aria-label="Abrir menú"
-          className="grid h-11 w-11 place-items-center rounded-full border border-hair-strong bg-white/5 text-cream md:hidden"
+          className="grid h-11 w-11 place-items-center text-cream md:hidden"
         >
-          <Menu size={22} aria-hidden="true" />
+          <Menu size={24} aria-hidden="true" />
         </button>
       </Dialog.Trigger>
 
@@ -46,7 +46,10 @@ export function MobileMenu() {
               >
                 <div className="flex items-center justify-between">
                   <Dialog.Title className="sr-only">Menú</Dialog.Title>
-                  <BrandLogo variant="wordmark" />
+                  <div className="flex items-center gap-2.5">
+                    <BrandLogo className="h-10 shrink-0" decorative />
+                    <BrandLogo variant="wordmark" />
+                  </div>
                   <Dialog.Close asChild>
                     <button
                       type="button"
@@ -69,7 +72,7 @@ export function MobileMenu() {
                         cn(
                           'rounded-xl px-4 py-3 font-display text-xl uppercase tracking-wide transition-colors',
                           isActive
-                            ? 'bg-amber/15 text-amber'
+                            ? 'bg-amber/15 text-white'
                             : 'text-cream hover:bg-white/5'
                         )
                       }

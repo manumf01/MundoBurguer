@@ -81,7 +81,7 @@ export function Navbar() {
           className="flex items-center gap-2.5 rounded-full transition-opacity hover:opacity-90"
           aria-label={`${site.name} — Inicio`}
         >
-          <BrandLogo className="h-10 w-10 shrink-0" />
+          <BrandLogo className="h-11 shrink-0 sm:h-12" decorative />
           <BrandLogo variant="wordmark" className="hidden sm:flex" />
         </Link>
 

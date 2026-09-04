@@ -70,6 +70,13 @@
     margin: 0;
     min-height: 100dvh;
     background-color: var(--color-bg);
+    /* Marca de agua: el logo en blanco repetido a tamaño pequeño, estilo
+       "papel de periódico", detrás de todo el contenido en cualquier vista.
+       La opacidad ya viene "horneada" en el propio PNG/WEBP (ver
+       src/assets/brand/README.md), así que aquí solo se define el mosaico. */
+    background-image: url('../assets/brand/logo-pattern.webp');
+    background-repeat: repeat;
+    background-size: 130px auto;
     color: var(--color-cream);
     font-family: var(--font-sans);
     font-optical-sizing: auto;

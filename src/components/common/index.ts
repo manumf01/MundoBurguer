@@ -7,3 +7,6 @@ export { MapEmbed } from './MapEmbed';
 export { IconPopover } from './IconPopover';
 export { ScrollToTop } from './ScrollToTop';
 export { Reveal } from './Reveal';
+export { CookieConsentBanner } from './CookieConsentBanner';
+export { LegalPageLayout, LegalSection } from './Legal';
+export { TruncatedText } from './TruncatedText';

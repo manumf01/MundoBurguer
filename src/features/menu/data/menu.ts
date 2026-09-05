@@ -40,12 +40,24 @@ import imgTejano from '@/assets/menu/tejano.webp';
 import imgDakota from '@/assets/menu/dakota.webp';
 
 // Fotos de complementos, raciones, bocapizza y sueltas (src/docs/*.png).
+import imgPulledFries from '@/assets/menu/crispers.webp';
+import imgCheddar from '@/assets/menu/cheddar.webp';
+import imgBravas from '@/assets/menu/bravas.webp';
+import imgPatatas from '@/assets/menu/patatas.webp';
+import imgGajo from '@/assets/menu/gajo.webp';
+import imgTriangulosQueso from '@/assets/menu/triangulosqueso.webp';
+import imgAlitas from '@/assets/menu/alitas.webp';
+import imgRefrescos from '@/assets/menu/refrescos.webp';
+import imgCerveza from '@/assets/menu/cerveza.webp';
+import imgAgua from '@/assets/menu/agua.webp';
+import imgCroquetas from '@/assets/menu/croquetas.webp';
 import imgAndorrana from '@/assets/menu/andorrana.webp';
 import imgAndorranaQueso from '@/assets/menu/andorrana-queso.webp';
 import imgPerritoCaliente from '@/assets/menu/perrito-caliente.webp';
+import imgPrinzs from '@/assets/menu/prinzs.webp';
 import imgArosCebolla from '@/assets/menu/aros-cebolla.webp';
 import imgNuggetsPollo from '@/assets/menu/nuggets-pollo.webp';
-import imgBolitasQueso from '@/assets/menu/bolitas-queso.webp';
+import imgBolitasQueso from '@/assets/menu/bolasqueso.webp';
 import imgCrujientesPollo from '@/assets/menu/crujientes-pollo.webp';
 import imgEnsaladaCesar from '@/assets/menu/ensalada-cesar.webp';
 import imgEnsaladaMixta from '@/assets/menu/ensalada-mixta.webp';
@@ -617,6 +629,7 @@ export const MENU: Product[] = [
     name: 'Triángulos cheese',
     category: 'complementos',
     tiers: COMPLEMENTO_TIERS_B,
+    image: imgTriangulosQueso,
     allergens: ['gluten', 'lacteos'],
   },
   {
@@ -624,6 +637,7 @@ export const MENU: Product[] = [
     name: 'Alitas de pollo',
     category: 'complementos',
     tiers: COMPLEMENTO_TIERS_B,
+    image: imgAlitas,
     allergens: ['gluten', 'huevos', 'lacteos'],
   },
 
@@ -634,6 +648,7 @@ export const MENU: Product[] = [
     category: 'patatas',
     price: 1.0,
     priceNote: 'Gratis con tu menú',
+    image: imgPatatas,
     allergens: [],
   },
   {
@@ -642,6 +657,7 @@ export const MENU: Product[] = [
     category: 'patatas',
     price: 2.5,
     priceNote: 'Con menú +1,00 €',
+    image: imgGajo,
     allergens: [],
   },
   {
@@ -649,6 +665,7 @@ export const MENU: Product[] = [
     name: 'Patatas bravas',
     category: 'patatas',
     price: 4.5,
+    image: imgBravas,
     allergens: ['gluten', 'lacteos'],
   },
   {
@@ -657,6 +674,7 @@ export const MENU: Product[] = [
     description: 'Patatas fritas, bacon y queso cheddar.',
     category: 'patatas',
     price: 3.5,
+    image: imgCheddar,
     allergens: ['gluten', 'soja'],
   },
   {
@@ -666,6 +684,7 @@ export const MENU: Product[] = [
     category: 'patatas',
     price: 4.0,
     isNew: true,
+    image: imgPulledFries,
     allergens: ['gluten', 'mostaza'],
   },
 
@@ -694,6 +713,7 @@ export const MENU: Product[] = [
     name: 'Croquetas y patatas',
     category: 'raciones',
     price: 6.0,
+    image: imgCroquetas,
     allergens: ['gluten', 'huevos', 'lacteos'],
   },
   {
@@ -841,6 +861,7 @@ export const MENU: Product[] = [
       'Salchicha gigante, cebolla caramelizada, bacon, queso, cebolla crujiente y mostaza.',
     category: 'sueltas',
     price: 4.5,
+    image: imgPrinzs,
     allergens: ['gluten', 'lacteos', 'mostaza'],
   },
   {
@@ -861,6 +882,7 @@ export const MENU: Product[] = [
     name: 'Cerveza',
     category: 'bebidas',
     price: 1.5,
+    image: imgCerveza,
     allergens: ['gluten', 'sulfitos'],
   },
   {
@@ -868,6 +890,7 @@ export const MENU: Product[] = [
     name: 'Refresco',
     category: 'bebidas',
     price: 1.5,
+    image: imgRefrescos,
     allergens: [],
   },
   {
@@ -875,6 +898,7 @@ export const MENU: Product[] = [
     name: 'Agua',
     category: 'bebidas',
     price: 1.5,
+    image: imgAgua,
     allergens: [],
   },
 

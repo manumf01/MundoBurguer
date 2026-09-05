@@ -60,6 +60,27 @@ export const router = createBrowserRouter([
           return { Component: m.ContactPage };
         },
       },
+      {
+        path: 'aviso-legal',
+        lazy: async () => {
+          const m = await import('@/pages/LegalNoticePage');
+          return { Component: m.LegalNoticePage };
+        },
+      },
+      {
+        path: 'politica-privacidad',
+        lazy: async () => {
+          const m = await import('@/pages/PrivacyPolicyPage');
+          return { Component: m.PrivacyPolicyPage };
+        },
+      },
+      {
+        path: 'politica-cookies',
+        lazy: async () => {
+          const m = await import('@/pages/CookiePolicyPage');
+          return { Component: m.CookiePolicyPage };
+        },
+      },
       ...futureRoutes,
       {
         path: '*',

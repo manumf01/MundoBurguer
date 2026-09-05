@@ -43,7 +43,7 @@ export function ConfiguraTeaser() {
                 key={item.title}
                 className="flex items-center gap-3 rounded-xl border border-hair bg-black/20 p-3.5"
               >
-                <span className="grid h-9 min-w-14 place-items-center rounded-full bg-amber/15 px-2 font-display text-sm text-amber">
+                <span className="grid h-9 min-w-14 place-items-center rounded-full bg-amber/15 px-2 font-display text-sm text-white">
                   {formatDelta(item.delta)}
                 </span>
                 <span className="text-sm text-cream-dim">

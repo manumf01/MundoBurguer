@@ -2,12 +2,16 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Section, SectionHeading, Button } from '@/components/ui';
 import { Reveal } from '@/components/common';
+import { useGridColumns } from '@/lib/useGridColumns';
 import { getProductsByIds } from '@/features/menu/hooks/useMenu';
 import { FEATURED_IDS } from '@/features/menu/data/menu';
+import { getRowAwareSlots } from '@/features/menu/utils';
 import { ProductCard } from '@/features/menu/components';
 
 export function Destacados() {
   const products = getProductsByIds(FEATURED_IDS);
+  const columns = useGridColumns({ base: 1, sm: 2, lg: 4 });
+  const slotsByProduct = getRowAwareSlots(products, columns);
 
   return (
     <Section id="destacados">
@@ -20,9 +24,13 @@ export function Destacados() {
       </Reveal>
       <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {products.map((product, i) => (
-          <li key={product.id}>
+          <li key={product.id} className="h-full">
             <Reveal delay={i * 70} className="h-full">
-              <ProductCard product={product} className="h-full" />
+              <ProductCard
+                product={product}
+                className="h-full"
+                slots={slotsByProduct.get(product.id)}
+              />
             </Reveal>
           </li>
         ))}

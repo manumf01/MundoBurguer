@@ -1,10 +1,13 @@
 import { Link, NavLink } from 'react-router-dom';
 import { MapPin, Phone, Clock } from 'lucide-react';
-import { footerNav } from '@/config/navigation';
+import { footerNav, legalNav } from '@/config/navigation';
 import { site } from '@/config/site';
 import { telHref } from '@/lib/format';
 import { Container } from '@/components/ui';
 import { BrandLogo, SocialLinks } from '@/components/common';
+
+const DEVELOPER_URL =
+  'https://www.linkedin.com/in/manuel-jesus-munoz-fernandez/';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -73,15 +76,35 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-hair pt-6 text-xs text-cream-mute sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-hair pt-6 text-xs text-cream-mute sm:flex-row sm:justify-between">
           <p>
             © {year} {site.name}. Todos los derechos reservados.
           </p>
           <p>
-            <Link to="/carta" className="hover:text-cream-dim">
-              Información de alérgenos disponible en la carta
-            </Link>
+            Web diseñada y desarrollada por{' '}
+            <a
+              href={DEVELOPER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-cream-dim transition-colors hover:text-cream"
+            >
+              Manu Muñoz
+            </a>
           </p>
+          <nav
+            aria-label="Legal"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+          >
+            {legalNav.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="hover:text-cream-dim"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </Container>
     </footer>

@@ -19,7 +19,7 @@ function OptionItem({
       <span
         className={cn(
           'mt-0.5 grid h-7 shrink-0 place-items-center rounded-full px-2 font-display text-sm',
-          delta > 0 ? 'bg-amber/15 text-amber' : 'bg-lime/15 text-lime'
+          delta > 0 ? 'bg-amber/15' : 'bg-lime/15 text-lime'
         )}
       >
         {delta > 0 ? (

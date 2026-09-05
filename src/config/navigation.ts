@@ -15,3 +15,10 @@ export const mainNav: NavItem[] = [
 
 /** Enlaces del pie de página. */
 export const footerNav: NavItem[] = mainNav;
+
+/** Enlaces a textos legales, en la franja inferior del pie de página. */
+export const legalNav: NavItem[] = [
+  { label: 'Aviso legal', to: '/aviso-legal' },
+  { label: 'Política de privacidad', to: '/politica-privacidad' },
+  { label: 'Política de cookies', to: '/politica-cookies' },
+];

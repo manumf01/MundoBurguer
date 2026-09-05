@@ -1,5 +1,8 @@
 import { Reveal } from '@/components/common';
+import { cn } from '@/lib/cn';
+import { useGridColumns } from '@/lib/useGridColumns';
 import type { MenuCategoryGroup } from '../hooks/useMenu';
+import { getRowAwareSlots } from '../utils';
 import { ProductCard } from './ProductCard';
 
 interface MenuCategorySectionProps {
@@ -13,6 +16,8 @@ export function MenuCategorySection({
   highlightId,
 }: MenuCategorySectionProps) {
   const { category, products } = group;
+  const columns = useGridColumns({ base: 1, sm: 2, lg: 3 });
+  const slotsByProduct = getRowAwareSlots(products, columns);
 
   return (
     <section
@@ -35,16 +40,21 @@ export function MenuCategorySection({
           <li
             key={product.id}
             id={`item-${product.id}`}
-            className="scroll-mt-40"
+            className="h-full scroll-mt-40"
           >
             <Reveal
               delay={Math.min(i, 8) * 45}
               forceShow={highlightId === product.id}
-              className={
-                highlightId === product.id ? 'anim-highlight' : undefined
-              }
+              className={cn(
+                'h-full',
+                highlightId === product.id && 'anim-highlight'
+              )}
             >
-              <ProductCard product={product} className="h-full" />
+              <ProductCard
+                product={product}
+                className="h-full"
+                slots={slotsByProduct.get(product.id)}
+              />
             </Reveal>
           </li>
         ))}

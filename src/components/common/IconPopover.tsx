@@ -1,12 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { cn } from '@/lib/cn';
-
-/** Solo abrimos en hover si el dispositivo tiene puntero fino (ratón). */
-const CAN_HOVER =
-  typeof window !== 'undefined' &&
-  typeof window.matchMedia === 'function' &&
-  window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+import { canHover } from '@/lib/pointer';
 
 interface IconPopoverProps {
   /** Texto a mostrar (nombre del alérgeno o de la verdura). */
@@ -35,10 +30,10 @@ export function IconPopover({ label, children, className }: IconPopoverProps) {
           tabIndex={-1}
           aria-label={label}
           onPointerEnter={(e) => {
-            if (CAN_HOVER && e.pointerType === 'mouse') setOpen(true);
+            if (canHover() && e.pointerType === 'mouse') setOpen(true);
           }}
           onPointerLeave={(e) => {
-            if (CAN_HOVER && e.pointerType === 'mouse') setOpen(false);
+            if (canHover() && e.pointerType === 'mouse') setOpen(false);
           }}
           className={cn(
             'inline-flex rounded-full outline-none transition-transform active:scale-90',

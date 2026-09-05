@@ -62,6 +62,26 @@ export const site = {
 
   priceRange: '€€',
   cuisine: ['Hamburguesas', 'Pizzas', 'Comida rápida', 'Kebab'],
+
+  /**
+   * Datos legales del titular (Aviso Legal LSSI-CE, Política de Privacidad).
+   * ⚠️ PENDIENTE ANTES DE PUBLICAR: sustituir `companyName` y `taxId` por la
+   * razón social y el CIF reales de la sociedad. Sin estos dos datos el
+   * Aviso Legal no cumple el art. 10 LSSI-CE.
+   */
+  legal: {
+    companyName: 'Mundo Burguer Moriles [RAZÓN SOCIAL PENDIENTE DE CONFIRMAR]',
+    legalForm: 'Sociedad',
+    taxId: '[CIF PENDIENTE DE CONFIRMAR]',
+    /** Datos del Registro Mercantil, si procede (tomo, folio, hoja, sección). */
+    commercialRegistry: null as string | null,
+    /** Email para ejercer derechos de protección de datos. */
+    privacyEmail: 'juanma_llamas@hotmail.com',
+    ga: {
+      /** Measurement ID de Google Analytics 4 (p. ej. "G-XXXXXXX"). Vacío = no se carga. */
+      measurementId: import.meta.env.VITE_GA_MEASUREMENT_ID ?? '',
+    },
+  },
 } as const;
 
 export type Site = typeof site;

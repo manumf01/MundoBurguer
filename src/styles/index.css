@@ -136,6 +136,16 @@
     color: var(--color-bg);
   }
 
+  /* Desplegable nativo <select>: el panel de opciones lo pinta el SO. Forzamos
+     fondo oscuro y texto claro para que sea legible como el resto de la web. */
+  select {
+    color-scheme: dark;
+  }
+  option {
+    background-color: var(--color-bg-elevated);
+    color: var(--color-cream);
+  }
+
   /* Scrollbar */
   * {
     scrollbar-width: thin;
@@ -232,6 +242,15 @@
       -webkit-mask-image: none;
       mask-image: none;
     }
+  }
+
+  /* Oculta la barra de scroll pero mantiene el desplazamiento (swipe/drag). */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -367,6 +386,31 @@
   animation: mb-page-in 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Spinner de carga con el logo (entrada a la parte privada): el logo "late"
+   dentro de un aro que gira. */
+@keyframes mb-logo-pulse {
+  0%,
+  100% {
+    transform: scale(0.88);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes mb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.anim-logo-pulse {
+  animation: mb-logo-pulse 1.6s ease-in-out infinite;
+}
+.anim-logo-ring {
+  animation: mb-spin 1.1s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-float,
   .anim-highlight {
@@ -382,5 +426,22 @@
   }
   .anim-page-enter {
     animation: none;
+  }
+  /* Sin movimiento: el aro solo se atenúa suavemente para indicar "cargando". */
+  .anim-logo-pulse {
+    animation: mb-fade-inout 1.8s ease-in-out infinite;
+  }
+  .anim-logo-ring {
+    animation: mb-fade-inout 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes mb-fade-inout {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
   }
 }

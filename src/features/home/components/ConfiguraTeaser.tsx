@@ -3,15 +3,16 @@ import { ArrowRight } from 'lucide-react';
 import { Section, Button, Card, Eyebrow } from '@/components/ui';
 import { Reveal } from '@/components/common';
 import { formatDelta } from '@/lib/format';
-import { menuConfig } from '@/features/menu/data/menuConfig';
+import { useMenuData } from '@/features/menu/hooks/useMenuData';
+import type { MenuConfigOption } from '@/features/menu/types';
 
 export function ConfiguraTeaser() {
-  const highlights = [
-    ...menuConfig.options.slice(0, 3),
-    menuConfig.meatChoices[2],
-  ].filter((item): item is (typeof menuConfig.options)[number] =>
-    Boolean(item)
-  );
+  const { menuConfig } = useMenuData();
+  const highlights: MenuConfigOption[] = (menuConfig.groups ?? [])
+    .filter((g) => g.style === 'priced')
+    .flatMap((g) => g.items)
+    .filter((item) => Boolean(item.title))
+    .slice(0, 4);
 
   return (
     <Section id="configura" spacing="sm">

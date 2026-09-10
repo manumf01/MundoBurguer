@@ -1,5 +1,17 @@
 import type { Category, Product } from '../types';
 
+/**
+ * Carta canónica escrita a mano. Desde la Fase 4 la app NO la consume en
+ * tiempo de ejecución (la carta pública lee del backend, ver
+ * `src/features/menu/data/menuStore.ts`). Se conserva como:
+ *   · origen del seed inicial (`scripts/seed.mjs`),
+ *   · origen del snapshot `--from-source` (`scripts/gen-menu-snapshot.mjs`),
+ *   · datos de referencia para `menu.test.ts`.
+ */
+
+// re-export para que el seed siga leyendo `FEATURED_IDS` de este módulo.
+export { FEATURED_IDS } from './featured';
+
 // Fotos oficiales (recortadas de las promos de src/docs/).
 import imgLaDona from '@/assets/menu/la-dona.webp';
 import imgLaIntensa from '@/assets/menu/la-intensa.webp';
@@ -88,7 +100,6 @@ export const CATEGORIES: Category[] = [
     id: 'pizzas',
     label: 'Pizzas',
     tagline: 'Masa artesana',
-    priceHeader: 'Individual · Familiar',
   },
   {
     id: 'complementos',
@@ -930,12 +941,4 @@ export const MENU: Product[] = [
     image: imgTartaQueso,
     allergens: ['lacteos', 'frutos_cascara', 'soja', 'gluten', 'huevos'],
   },
-];
-
-/** Productos destacados para la página de inicio. */
-export const FEATURED_IDS = [
-  'premium-la-intensa',
-  'premium-la-reverde',
-  'menu-americano',
-  'suelta-campero',
 ];

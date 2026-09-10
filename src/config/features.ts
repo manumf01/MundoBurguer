@@ -12,6 +12,12 @@ export const features = {
   reservations: false,
   /** Formulario de contacto con envío real de email. */
   contactForm: false,
+  /**
+   * Parte privada de administración (`/panel`, `/acceso`) y su acceso discreto.
+   * Requiere las variables `VITE_SUPABASE_*` (ver `.env.example`). En `false`
+   * no se monta ninguna ruta privada; el resto de la web es idéntico.
+   */
+  adminPanel: true,
 } as const;
 
 export type FeatureName = keyof typeof features;

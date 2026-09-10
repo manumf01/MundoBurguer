@@ -6,13 +6,19 @@ import { trackPageView } from '@/lib/analytics';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 
+/** Rutas privadas: no se miden en analítica (van también en noindex). */
+const PRIVATE_PREFIXES = ['/acceso', '/panel'];
+
 /** Envía un page_view a GA4 en cada navegación del router, solo si hay consentimiento. */
 function AnalyticsPageViewTracker() {
   const location = useLocation();
   const { consent } = useCookieConsent();
 
   useEffect(() => {
-    if (consent?.analytics) {
+    const isPrivate = PRIVATE_PREFIXES.some((p) =>
+      location.pathname.startsWith(p)
+    );
+    if (consent?.analytics && !isPrivate) {
       trackPageView(location.pathname + location.search);
     }
   }, [location.pathname, location.search, consent?.analytics]);

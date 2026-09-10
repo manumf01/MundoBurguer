@@ -1,9 +1,15 @@
 import { useDeferredValue, useMemo, useState } from 'react';
-import { CATEGORIES, MENU } from '../data/menu';
-import type { AllergenId, CategoryId, Product } from '../types';
+import type {
+  AllergenId,
+  Category,
+  MenuConfigData,
+  Product,
+} from '../types';
+import { useMenuData } from './useMenuData';
+import type { MenuSource } from '../data/menuStore';
 
 export interface MenuCategoryGroup {
-  category: (typeof CATEGORIES)[number];
+  category: Category;
   products: Product[];
 }
 
@@ -12,11 +18,19 @@ export interface UseMenuResult {
   setSearch: (value: string) => void;
   excludedAllergens: Set<AllergenId>;
   toggleAllergen: (id: AllergenId) => void;
+  onlyNew: boolean;
+  onlyPopular: boolean;
+  toggleOnlyNew: () => void;
+  toggleOnlyPopular: () => void;
   clearFilters: () => void;
   hasActiveFilters: boolean;
   /** Categorías con al menos un producto tras aplicar los filtros. */
   groups: MenuCategoryGroup[];
   totalResults: number;
+  menuConfig: MenuConfigData;
+  /** De dónde salen los datos y si aún no son frescos. */
+  source: MenuSource;
+  stale: boolean;
 }
 
 const normalize = (value: string) =>
@@ -26,10 +40,14 @@ const normalize = (value: string) =>
     .replace(/\p{Diacritic}/gu, '');
 
 export function useMenu(): UseMenuResult {
+  const { categories, products, menuConfig, source, stale } = useMenuData();
+
   const [search, setSearch] = useState('');
   const [excludedAllergens, setExcludedAllergens] = useState<Set<AllergenId>>(
     () => new Set()
   );
+  const [onlyNew, setOnlyNew] = useState(false);
+  const [onlyPopular, setOnlyPopular] = useState(false);
 
   const deferredSearch = useDeferredValue(search);
 
@@ -45,15 +63,22 @@ export function useMenu(): UseMenuResult {
   const clearFilters = () => {
     setSearch('');
     setExcludedAllergens(new Set());
+    setOnlyNew(false);
+    setOnlyPopular(false);
   };
 
   const hasActiveFilters =
-    deferredSearch.trim().length > 0 || excludedAllergens.size > 0;
+    deferredSearch.trim().length > 0 ||
+    excludedAllergens.size > 0 ||
+    onlyNew ||
+    onlyPopular;
 
   const groups = useMemo<MenuCategoryGroup[]>(() => {
     const query = normalize(deferredSearch.trim());
 
     const matches = (product: Product) => {
+      if (onlyNew && !product.isNew) return false;
+      if (onlyPopular && !product.isPopular) return false;
       for (const allergen of product.allergens) {
         if (excludedAllergens.has(allergen)) return false;
       }
@@ -64,19 +89,28 @@ export function useMenu(): UseMenuResult {
       return haystack.includes(query);
     };
 
-    const byCategory = new Map<CategoryId, Product[]>();
-    for (const product of MENU) {
+    const byCategory = new Map<string, Product[]>();
+    for (const product of products) {
       if (!matches(product)) continue;
       const list = byCategory.get(product.category) ?? [];
       list.push(product);
       byCategory.set(product.category, list);
     }
 
-    return CATEGORIES.map((category) => ({
-      category,
-      products: byCategory.get(category.id) ?? [],
-    })).filter((group) => group.products.length > 0);
-  }, [deferredSearch, excludedAllergens]);
+    return categories
+      .map((category) => ({
+        category,
+        products: byCategory.get(category.id) ?? [],
+      }))
+      .filter((group) => group.products.length > 0);
+  }, [
+    deferredSearch,
+    excludedAllergens,
+    onlyNew,
+    onlyPopular,
+    products,
+    categories,
+  ]);
 
   const totalResults = useMemo(
     () => groups.reduce((sum, group) => sum + group.products.length, 0),
@@ -88,16 +122,16 @@ export function useMenu(): UseMenuResult {
     setSearch,
     excludedAllergens,
     toggleAllergen,
+    onlyNew,
+    onlyPopular,
+    toggleOnlyNew: () => setOnlyNew((v) => !v),
+    toggleOnlyPopular: () => setOnlyPopular((v) => !v),
     clearFilters,
     hasActiveFilters,
     groups,
     totalResults,
+    menuConfig,
+    source,
+    stale,
   };
-}
-
-export function getProductsByIds(ids: readonly string[]): Product[] {
-  const index = new Map(MENU.map((product) => [product.id, product]));
-  return ids
-    .map((id) => index.get(id))
-    .filter((product): product is Product => Boolean(product));
 }

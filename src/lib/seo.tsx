@@ -9,6 +9,8 @@ interface SeoProps {
   path?: string;
   /** Si es true, usa `title` tal cual sin sufijo de marca. */
   bare?: boolean;
+  /** Añade `<meta name="robots" content="noindex, nofollow">` (rutas privadas). */
+  noindex?: boolean;
 }
 
 function setMeta(
@@ -46,6 +48,7 @@ export function Seo({
   description,
   path = '/',
   bare = false,
+  noindex = false,
 }: SeoProps) {
   const fullTitle = bare ? title : `${title} · ${site.name}`;
   const desc = description ?? site.shortDescription;
@@ -63,7 +66,15 @@ export function Seo({
     );
     setMeta('meta[property="og:url"]', 'property', 'og:url', canonical);
     setLink('canonical', canonical);
-  }, [fullTitle, desc, canonical]);
+
+    // Rutas privadas: fuera de los índices. Se retira al navegar a una
+    // pública (que renderiza <Seo> sin `noindex`).
+    if (noindex) {
+      setMeta('meta[name="robots"]', 'name', 'robots', 'noindex, nofollow');
+    } else {
+      document.head.querySelector('meta[name="robots"]')?.remove();
+    }
+  }, [fullTitle, desc, canonical, noindex]);
 
   return null;
 }

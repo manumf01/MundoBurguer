@@ -9,6 +9,10 @@ type MenuFiltersProps = Pick<
   | 'setSearch'
   | 'excludedAllergens'
   | 'toggleAllergen'
+  | 'onlyNew'
+  | 'onlyPopular'
+  | 'toggleOnlyNew'
+  | 'toggleOnlyPopular'
   | 'clearFilters'
   | 'hasActiveFilters'
   | 'totalResults'
@@ -19,6 +23,10 @@ export function MenuFilters({
   setSearch,
   excludedAllergens,
   toggleAllergen,
+  onlyNew,
+  onlyPopular,
+  toggleOnlyNew,
+  toggleOnlyPopular,
   clearFilters,
   hasActiveFilters,
   totalResults,
@@ -39,6 +47,33 @@ export function MenuFilters({
           aria-label="Buscar en la carta"
           className="h-12 w-full rounded-full border border-hair bg-white/5 pl-11 pr-4 text-cream placeholder:text-cream-mute focus-visible:border-amber/60"
         />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs uppercase tracking-widest text-cream-mute">
+          Filtrar por:
+        </span>
+        {(
+          [
+            ['Novedades', onlyNew, toggleOnlyNew],
+            ['Populares', onlyPopular, toggleOnlyPopular],
+          ] as const
+        ).map(([label, active, toggle]) => (
+          <button
+            key={label}
+            type="button"
+            aria-pressed={active}
+            onClick={toggle}
+            className={cn(
+              'rounded-full border px-3 py-1 text-xs font-semibold transition-all',
+              active
+                ? 'border-amber bg-amber text-bg'
+                : 'border-hair bg-white/5 text-cream-dim hover:-translate-y-0.5 hover:border-amber hover:bg-amber/10 hover:text-cream'
+            )}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       <div className="flex flex-wrap items-center gap-2">

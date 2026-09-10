@@ -1,6 +1,5 @@
 /**
  * Fuente única de verdad para los datos del negocio.
- * Extraído de la carta oficial (src/docs/Z CARTA MB 2024.pdf).
  */
 
 const siteUrl = (

@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/cn';
-import { Card, NewSeal } from '@/components/ui';
+import { Card, NewSeal, PopularSeal } from '@/components/ui';
 import { AllergenRow, BrandLogo, TruncatedText } from '@/components/common';
 import type { Product } from '../types';
 import type { ProductCardSlots } from '../utils';
@@ -15,6 +16,11 @@ interface ProductCardProps {
    * `getProductCardSlots` en `../utils`. Por defecto se reservan ambos.
    */
   slots?: ProductCardSlots;
+  /**
+   * En móvil, muestra solo imagen + nombre + precio; el resto (descripción,
+   * alérgenos, configurador) va en la vista de detalle `/carta/<slug>`.
+   */
+  mobileCompact?: boolean;
 }
 
 const DEFAULT_SLOTS: ProductCardSlots = {
@@ -23,34 +29,50 @@ const DEFAULT_SLOTS: ProductCardSlots = {
 };
 
 /**
- * Estructura de altura fija (imagen, título, descripción, precio, alérgenos)
- * para que las tarjetas de un mismo grupo (categoría de la carta, o
- * destacados de Inicio) midan lo mismo y su información se vea alineada
- * entre sí, tenga o no cada producto foto, descripción o alérgenos. Los
- * huecos de descripción y alérgenos solo se reservan si `slots` dice que al
- * menos un producto del grupo los tiene (si ninguno los tiene, no se dejan
- * en blanco).
+ * Tarjeta de producto. TODA la tarjeta enlaza a la vista de detalle
+ * (`/carta/<slug>`) mediante un enlace superpuesto; los tooltips de alérgenos
+ * y guarnición van por encima (z-10) y siguen siendo pulsables aparte.
  */
 export function ProductCard({
   product,
   className,
   slots = DEFAULT_SLOTS,
+  mobileCompact = false,
 }: ProductCardProps) {
+  const to = `/carta/${product.id}`;
+
   return (
     <Card
       as="article"
       interactive
-      className={cn('relative flex flex-col', className)}
+      className={cn('group relative flex flex-col', className)}
     >
+      {/* Sellos apilados en la esquina superior derecha (algo más pequeños en móvil). */}
       {product.isNew ? (
-        <NewSeal className="absolute -right-3 -top-3.5 z-20 w-14 rotate-6" />
+        <NewSeal className="absolute -right-3 -top-3.5 z-20 w-14 rotate-6 scale-[0.82] sm:scale-100" />
       ) : null}
+      {product.isPopular ? (
+        <PopularSeal
+          className={cn(
+            'absolute -right-3 z-20 w-14 rotate-6 scale-[0.82] sm:scale-100',
+            product.isNew ? 'top-[2.9rem] sm:top-[3.25rem]' : '-top-3.5'
+          )}
+        />
+      ) : null}
+
+      {/* Enlace que cubre toda la tarjeta (por encima de imagen y textos;
+          los tooltips de ingredientes van a z-20 y siguen siendo pulsables). */}
+      <Link
+        to={to}
+        aria-label={`Ver ${product.name}`}
+        className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-amber/60"
+      />
 
       <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-t-2xl bg-bg">
         {product.image ? (
           <img
             src={product.image}
-            alt={product.name}
+            alt=""
             loading="lazy"
             className="h-full w-full object-cover"
           />
@@ -62,40 +84,45 @@ export function ProductCard({
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-surface to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        {/* Altura mínima en rem (no en `lh`, sin soporte fiable aún) que
-            reserva exactamente 2 líneas de título, así el resto de la
-            tarjeta empieza siempre en el mismo punto tenga el nombre una o
-            dos líneas. Si cambias el tamaño/interlineado del título,
-            recalcula el valor a juego. */}
-        <h3 className="line-clamp-2 min-h-[3.15rem] pr-8 text-left font-display text-xl leading-tight tracking-wide text-cream">
+      <div className="flex min-w-0 flex-1 flex-col gap-3 p-5">
+        <h3
+          className={cn(
+            'break-words pr-8 font-display text-xl leading-tight tracking-wide text-cream transition-colors group-hover:text-amber',
+            'line-clamp-2',
+            mobileCompact ? 'sm:min-h-[3.15rem]' : 'min-h-[3.15rem]'
+          )}
+        >
           {product.name}
         </h3>
 
         {slots.showDescription ? (
-          product.description ? (
-            <TruncatedText
-              text={product.description}
-              className="line-clamp-2 min-h-[2.85rem] text-left text-sm leading-relaxed text-cream-dim"
-            />
-          ) : (
-            <p className="min-h-[2.85rem] text-left text-sm text-cream-dim" />
-          )
+          <div className={cn(mobileCompact && 'hidden sm:block')}>
+            {product.description ? (
+              <TruncatedText
+                text={product.description}
+                className="line-clamp-2 min-h-[2.85rem] break-words text-left text-sm leading-relaxed text-cream-dim"
+              />
+            ) : (
+              <p className="min-h-[2.85rem] text-left text-sm text-cream-dim" />
+            )}
+          </div>
         ) : null}
 
         <div
           className={cn(
             'flex flex-col gap-3 pt-1',
-            // Sin fila de alérgenos, el precio queda como último contenido:
-            // le damos el mismo margen hasta el borde inferior de la tarjeta
-            // que deja esa fila cuando sí está (su gap-3 + min-h-[3.5rem]),
-            // para que no se vea "más pegada" al final que las demás.
-            !slots.showAllergens && 'pb-[4.25rem]'
+            !slots.showAllergens &&
+              (mobileCompact ? 'sm:pb-[4.25rem]' : 'pb-[4.25rem]')
           )}
         >
           <ProductPrice product={product} />
           {slots.showAllergens ? (
-            <div className="flex min-h-[3.5rem] flex-wrap content-start items-center gap-x-3 gap-y-1.5">
+            <div
+              className={cn(
+                'relative z-20 flex min-h-[3.5rem] flex-wrap content-start items-center gap-x-3 gap-y-1.5',
+                mobileCompact && 'hidden sm:flex'
+              )}
+            >
               <GarnishRow garnish={product.garnish ?? []} />
               <AllergenRow allergens={product.allergens} />
             </div>

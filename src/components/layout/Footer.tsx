@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
-import { MapPin, Phone, Clock } from 'lucide-react';
+import { MapPin, Phone, Clock, Lock } from 'lucide-react';
 import { footerNav, legalNav } from '@/config/navigation';
+import { features } from '@/config/features';
 import { site } from '@/config/site';
 import { telHref } from '@/lib/format';
 import { Container } from '@/components/ui';
@@ -77,8 +78,18 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-3 border-t border-hair pt-6 text-xs text-cream-mute sm:flex-row sm:justify-between">
-          <p>
-            © {year} {site.name}. Todos los derechos reservados.
+          <p className="flex items-center gap-1.5">
+            <span>© {year} {site.name}. Todos los derechos reservados.</span>
+            {features.adminPanel ? (
+              <Link
+                to="/panel"
+                rel="nofollow"
+                aria-label="Acceso privado"
+                className="text-cream-mute/35 transition-colors hover:text-cream-mute"
+              >
+                <Lock size={12} aria-hidden="true" />
+              </Link>
+            ) : null}
           </p>
           <p>
             Web diseñada y desarrollada por{' '}

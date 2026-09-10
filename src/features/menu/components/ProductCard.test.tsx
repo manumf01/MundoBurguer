@@ -1,7 +1,12 @@
+import type { ReactElement } from 'react';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { ProductCard } from './ProductCard';
 import type { Product } from '../types';
+
+const renderCard = (ui: ReactElement) =>
+  render(<MemoryRouter>{ui}</MemoryRouter>);
 
 const base: Product = {
   id: 'test-1',
@@ -14,7 +19,7 @@ const base: Product = {
 
 describe('ProductCard', () => {
   it('muestra nombre, descripción y precio', () => {
-    render(<ProductCard product={base} />);
+    renderCard(<ProductCard product={base} />);
     expect(
       screen.getByRole('heading', { name: 'Menú de prueba' })
     ).toBeInTheDocument();
@@ -22,20 +27,26 @@ describe('ProductCard', () => {
     expect(screen.getByText('6,50 €')).toBeInTheDocument();
   });
 
+  it('toda la tarjeta enlaza al detalle del producto', () => {
+    renderCard(<ProductCard product={base} />);
+    const link = screen.getByRole('link', { name: 'Ver Menú de prueba' });
+    expect(link).toHaveAttribute('href', '/carta/test-1');
+  });
+
   it('anuncia los alérgenos de forma accesible', () => {
-    render(<ProductCard product={base} />);
+    renderCard(<ProductCard product={base} />);
     expect(
       screen.getByLabelText('Alérgenos: Gluten, Lácteos')
     ).toBeInTheDocument();
   });
 
   it('muestra el sello "Nuevo" cuando corresponde', () => {
-    render(<ProductCard product={{ ...base, isNew: true }} />);
+    renderCard(<ProductCard product={{ ...base, isNew: true }} />);
     expect(screen.getByText(/Nuevo/)).toBeInTheDocument();
   });
 
   it('renderiza precios por variante', () => {
-    render(
+    renderCard(
       <ProductCard
         product={{
           ...base,

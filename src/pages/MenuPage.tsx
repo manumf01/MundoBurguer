@@ -141,7 +141,7 @@ export function MenuPage() {
         )}
 
         <div className="mt-16 flex flex-col gap-6">
-          <ConfiguraTuMenu id="configura" />
+          <ConfiguraTuMenu id="configura" menuConfig={menu.menuConfig} />
           <MenuLegend />
         </div>
       </Container>

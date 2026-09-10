@@ -16,7 +16,7 @@ export function MenuCategorySection({
   highlightId,
 }: MenuCategorySectionProps) {
   const { category, products } = group;
-  const columns = useGridColumns({ base: 1, sm: 2, lg: 3 });
+  const columns = useGridColumns({ base: 2, sm: 2, lg: 3 });
   const slotsByProduct = getRowAwareSlots(products, columns);
 
   return (
@@ -35,7 +35,7 @@ export function MenuCategorySection({
         <p className="font-script text-2xl text-cream-dim">{category.tagline}</p>
       </Reveal>
 
-      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
         {products.map((product, i) => (
           <li
             key={product.id}
@@ -54,6 +54,7 @@ export function MenuCategorySection({
                 product={product}
                 className="h-full"
                 slots={slotsByProduct.get(product.id)}
+                mobileCompact
               />
             </Reveal>
           </li>

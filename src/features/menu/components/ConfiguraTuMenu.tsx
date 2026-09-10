@@ -1,11 +1,11 @@
-import { Check, Plus } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { formatDelta } from '@/lib/format';
 import { Card, Eyebrow } from '@/components/ui';
 import { AllergenRow } from '@/components/common';
-import { menuConfig } from '../data/menuConfig';
+import type { MenuConfigData, MenuConfigGroup } from '../types';
 
-function OptionItem({
+function PricedItem({
   title,
   detail,
   delta,
@@ -30,18 +30,54 @@ function OptionItem({
       </span>
       <span>
         <span className="font-semibold text-cream">{title}</span>
-        <span className="block text-sm text-cream-dim">{detail}</span>
+        {detail ? (
+          <span className="block text-sm text-cream-dim">{detail}</span>
+        ) : null}
       </span>
     </li>
+  );
+}
+
+function Group({ group }: { group: MenuConfigGroup }) {
+  return (
+    <div>
+      <h3 className="mb-3 text-sm uppercase tracking-widest text-cream-mute">
+        {group.heading}
+      </h3>
+      {group.style === 'bullets' ? (
+        <ul className="flex flex-col gap-2">
+          {group.items.map((item) => (
+            <li
+              key={item.title}
+              className="flex items-center gap-2 text-cream-dim"
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-lime"
+                aria-hidden="true"
+              />
+              {item.title}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <ul className="flex flex-col gap-3">
+          {group.items.map((item) => (
+            <PricedItem key={item.title} {...item} />
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
 export function ConfiguraTuMenu({
   className,
   id,
+  menuConfig,
 }: {
   className?: string;
   id?: string;
+  menuConfig: MenuConfigData;
 }) {
   return (
     <Card
@@ -58,52 +94,19 @@ export function ConfiguraTuMenu({
         {menuConfig.heading}
       </h2>
 
-      <div className="mt-6 grid gap-8 md:grid-cols-2">
-        <div>
-          <h3 className="mb-3 flex items-center gap-2 text-sm uppercase tracking-widest text-cream-mute">
-            <Check size={15} className="text-lime" aria-hidden="true" />
-            Cada menú incluye
-          </h3>
-          <ul className="flex flex-col gap-2">
-            {menuConfig.includes.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-cream-dim">
-                <span
-                  className="h-1.5 w-1.5 rounded-full bg-lime"
-                  aria-hidden="true"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
+      <div className="mt-6 grid gap-x-8 gap-y-6 md:grid-cols-2">
+        {(menuConfig.groups ?? []).map((group) => (
+          <Group key={group.key} group={group} />
+        ))}
 
-          <h3 className="mb-3 mt-6 flex items-center gap-2 text-sm uppercase tracking-widest text-cream-mute">
-            Elige tu carne
-          </h3>
-          <ul className="flex flex-col gap-3">
-            {menuConfig.meatChoices.map((choice) => (
-              <OptionItem key={choice.title} {...choice} />
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-3 flex items-center gap-2 text-sm uppercase tracking-widest text-cream-mute">
-            <Plus size={15} className="text-amber" aria-hidden="true" />
-            Extras y mejoras
-          </h3>
-          <ul className="flex flex-col gap-3">
-            {menuConfig.options.map((option) => (
-              <OptionItem key={option.title} {...option} />
-            ))}
-          </ul>
-
-          <div className="mt-6 rounded-xl border border-hair bg-black/20 p-3">
+        {(menuConfig.optionAllergens ?? []).length > 0 ? (
+          <div className="self-start rounded-xl border border-hair bg-black/20 p-3">
             <p className="mb-2 text-xs uppercase tracking-widest text-cream-mute">
               Alérgenos de pan y salsas
             </p>
             <AllergenRow allergens={[...menuConfig.optionAllergens]} />
           </div>
-        </div>
+        ) : null}
       </div>
     </Card>
   );

@@ -8,6 +8,10 @@ interface TruncatedTextProps {
   text: string;
   /** Debe incluir la utilidad `line-clamp-*` que define el recorte. */
   className?: string;
+  /** Etiqueta del elemento recortable (`p` por defecto, `h3` para títulos). */
+  as?: 'p' | 'h3';
+  /** Texto para lectores de pantalla del botón que abre el popover. */
+  ariaLabel?: string;
 }
 
 /**
@@ -18,16 +22,23 @@ interface TruncatedTextProps {
  * texto ya cabe entero, se queda como un párrafo normal, sin nada que lo
  * distinga.
  */
-export function TruncatedText({ text, className }: TruncatedTextProps) {
+export function TruncatedText({
+  text,
+  className,
+  as: Tag = 'p',
+  ariaLabel,
+}: TruncatedTextProps) {
   const [truncated, setTruncated] = useState(false);
   const [open, setOpen] = useState(false);
   const observerRef = useRef<ResizeObserver | null>(null);
 
-  const measure = useCallback((el: HTMLParagraphElement | null) => {
+  const measure = useCallback((el: HTMLElement | null) => {
     observerRef.current?.disconnect();
     observerRef.current = null;
     if (!el) return;
-    const check = () => setTruncated(el.scrollHeight - el.clientHeight > 1);
+    // Umbral holgado: solo se considera recortado (y por tanto muestra el
+    // popover) cuando el texto NO cabe de verdad y aparecen los "…".
+    const check = () => setTruncated(el.scrollHeight - el.clientHeight > 4);
     check();
     if (typeof ResizeObserver === 'undefined') return;
     const ro = new ResizeObserver(check);
@@ -39,9 +50,9 @@ export function TruncatedText({ text, className }: TruncatedTextProps) {
 
   if (!truncated) {
     return (
-      <p ref={measure} className={className}>
+      <Tag ref={measure} className={className}>
         {text}
-      </p>
+      </Tag>
     );
   }
 
@@ -50,7 +61,7 @@ export function TruncatedText({ text, className }: TruncatedTextProps) {
       <Popover.Trigger asChild>
         <button
           type="button"
-          aria-label={`Ver todos los ingredientes: ${text}`}
+          aria-label={ariaLabel ?? `Ver el texto completo: ${text}`}
           onPointerEnter={(e) => {
             if (canHover() && e.pointerType === 'mouse') setOpen(true);
           }}
@@ -59,7 +70,7 @@ export function TruncatedText({ text, className }: TruncatedTextProps) {
           }}
           className="block w-full text-left outline-none"
         >
-          <p
+          <Tag
             ref={measure}
             className={cn(
               className,
@@ -67,7 +78,7 @@ export function TruncatedText({ text, className }: TruncatedTextProps) {
             )}
           >
             {text}
-          </p>
+          </Tag>
         </button>
       </Popover.Trigger>
 

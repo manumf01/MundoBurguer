@@ -34,14 +34,16 @@ export function ProductPrice({ product }: { product: Product }) {
 
   if (typeof product.price === 'number') {
     return (
-      <p className="flex items-baseline gap-2">
+      <div className="flex min-w-0 flex-col gap-0.5">
         <span className="font-display text-2xl text-amber">
           {formatPrice(product.price)}
         </span>
         {product.priceNote ? (
-          <span className="text-xs text-cream-mute">{product.priceNote}</span>
+          <span className="break-words text-xs leading-snug text-cream-mute">
+            {product.priceNote}
+          </span>
         ) : null}
-      </p>
+      </div>
     );
   }
 

@@ -1,0 +1,1480 @@
+{
+  "generatedAt": "2026-09-10T16:34:31.072Z",
+  "categories": [
+    {
+      "id": "menus",
+      "label": "Menús",
+      "tagline": "Incluyen patatas fritas y bebida"
+    },
+    {
+      "id": "premium",
+      "label": "Premium",
+      "tagline": "Burgers de autor · 180 g de vaca selección"
+    },
+    {
+      "id": "pizzas",
+      "label": "Pizzas",
+      "tagline": "Masa artesana"
+    },
+    {
+      "id": "complementos",
+      "label": "Complementos",
+      "tagline": "Para picar, por piezas"
+    },
+    {
+      "id": "patatas",
+      "label": "Patatas",
+      "tagline": "La guarnición que manda"
+    },
+    {
+      "id": "raciones",
+      "label": "Ensaladas y raciones",
+      "tagline": "Para compartir"
+    },
+    {
+      "id": "bocapizzas",
+      "label": "Bocapizzas",
+      "tagline": "Normal o XL"
+    },
+    {
+      "id": "empanadas",
+      "label": "Empanadas caseras",
+      "tagline": "Tamaño 30 × 35 cm"
+    },
+    {
+      "id": "sueltas",
+      "label": "A la carta",
+      "tagline": "Bocadillos, hamburguesas sueltas y perritos"
+    },
+    {
+      "id": "bebidas",
+      "label": "Bebidas",
+      "tagline": "Cerveza, refresco o agua"
+    },
+    {
+      "id": "postres",
+      "label": "Postres",
+      "tagline": "Caseros e individuales"
+    }
+  ],
+  "products": [
+    {
+      "id": "menu-infantil",
+      "name": "Infantil",
+      "description": "Hamburguesa con queso y patatas ó nuggets con patatas.",
+      "category": "menus",
+      "price": 5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-infantil.webp",
+      "configGroupKeys": [
+        "carne",
+        "extras"
+      ]
+    },
+    {
+      "id": "menu-americano",
+      "name": "Americano",
+      "description": "Hamburguesa con bacon, salsa barbacoa y queso.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "mostaza",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "isPopular": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-americano.webp",
+      "configGroupKeys": [
+        "carne",
+        "extras"
+      ]
+    },
+    {
+      "id": "menu-italiano",
+      "name": "Italiano",
+      "description": "Hamburguesa, queso, mostaza y pepinillos.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "lacteos",
+        "mostaza",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-italiano.webp"
+    },
+    {
+      "id": "menu-mejicano",
+      "name": "Mejicano",
+      "description": "Pollo empanado, queso y salsa brava.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos",
+        "sesamo"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-mejicano.webp"
+    },
+    {
+      "id": "menu-sueco",
+      "name": "Sueco",
+      "description": "Hamburguesa, queso, lomo sajonia y cebolla crujiente.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-sueco.webp"
+    },
+    {
+      "id": "menu-frances",
+      "name": "Francés",
+      "description": "Hamburguesa, bacon, tortilla francesa y queso.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-frances.webp"
+    },
+    {
+      "id": "menu-ruso",
+      "name": "Ruso",
+      "description": "Hamburguesa doble, queso, pepinillos y ketchup.",
+      "category": "menus",
+      "price": 7,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-ruso.webp"
+    },
+    {
+      "id": "menu-chileno",
+      "name": "Chileno",
+      "description": "Pollo empanado, bacon, nachos, queso y salsa césar.",
+      "category": "menus",
+      "price": 7,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos",
+        "mostaza",
+        "sesamo"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-chileno.webp"
+    },
+    {
+      "id": "menu-belga",
+      "name": "Belga",
+      "description": "Hamburguesa, nachos, queso y salsa curry de mango.",
+      "category": "menus",
+      "price": 7,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "apio",
+        "mostaza",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-belga.webp"
+    },
+    {
+      "id": "menu-iberico",
+      "name": "Ibérico",
+      "description": "Hamburguesa, tortilla de patatas, jamón serrano y queso.",
+      "category": "menus",
+      "price": 7,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos",
+        "sesamo"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-iberico.webp"
+    },
+    {
+      "id": "menu-parisino",
+      "name": "Parisino",
+      "description": "Hamburguesa, aros de cebolla y salsa de queso cheddar.",
+      "category": "menus",
+      "price": 7.5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-parisino.webp"
+    },
+    {
+      "id": "menu-azteca",
+      "name": "Azteca",
+      "description": "Pollo empanado, verdura, queso, guacamole y salsa mejicana.",
+      "category": "menus",
+      "price": 7.5,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos",
+        "sesamo"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-azteca.webp"
+    },
+    {
+      "id": "menu-maya",
+      "name": "Maya",
+      "description": "Hamburguesa de ternera, bacon, lechuga, queso de cabra, cebolla caramelizada y salsa balsámica.",
+      "category": "menus",
+      "price": 7.5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "garnish": [
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-maya.webp"
+    },
+    {
+      "id": "menu-jalapeno",
+      "name": "Jalapeño",
+      "description": "Hamburguesa, huevo frito, jalapeños, queso y salsa de miel y mostaza.",
+      "category": "menus",
+      "price": 7.5,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-jalapeno.webp"
+    },
+    {
+      "id": "menu-morileno",
+      "name": "Morileño",
+      "description": "Hamburguesa gigante, queso, lomo adobado y huevo frito.",
+      "category": "menus",
+      "price": 7.9,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "isPopular": true,
+      "isFeatured": true,
+      "featuredOrder": 3,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-morileno.webp"
+    },
+    {
+      "id": "menu-espanol",
+      "name": "Español",
+      "description": "Lomo adobado, bacon y queso.",
+      "category": "menus",
+      "price": 6.9,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-espanol.webp"
+    },
+    {
+      "id": "menu-portugues",
+      "name": "Portugués",
+      "description": "Pechuga de pollo o lomo y queso.",
+      "category": "menus",
+      "price": 6.9,
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-portugues.webp"
+    },
+    {
+      "id": "menu-cordobes",
+      "name": "Cordobés",
+      "description": "Lomo, tortilla francesa, jamón serrano, pimiento verde y queso.",
+      "category": "menus",
+      "price": 7.5,
+      "allergens": [
+        "gluten",
+        "huevos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-cordobes.webp"
+    },
+    {
+      "id": "menu-berlines",
+      "name": "Berlinés",
+      "description": "Tortilla de patatas, queso y jamón york.",
+      "category": "menus",
+      "price": 6.9,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-berlines.webp"
+    },
+    {
+      "id": "menu-turco",
+      "name": "Turco",
+      "description": "Kebab en pan de torta, pollo, verdura y salsa de yogur.",
+      "category": "menus",
+      "price": 6.5,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos"
+      ],
+      "garnish": [
+        "tomate",
+        "cebolla",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-turco.webp"
+    },
+    {
+      "id": "menu-britanico",
+      "name": "Británico",
+      "description": "Sándwich de jamón york, queso, atún, palitos de mar, tortilla francesa, mahonesa y ketchup.",
+      "category": "menus",
+      "price": 6,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos",
+        "pescado"
+      ],
+      "garnish": [
+        "tomate",
+        "lechuga"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-britanico.webp"
+    },
+    {
+      "id": "menu-neoyorkino",
+      "name": "Neoyorkino",
+      "description": "Pechuga de pollo crujiente, lechuga, tomate, bacon a la plancha, queso gouda y salsa BBQ.",
+      "category": "menus",
+      "price": 8,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos",
+        "mostaza",
+        "sulfitos"
+      ],
+      "garnish": [
+        "tomate",
+        "lechuga"
+      ],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-neoyorkino.webp"
+    },
+    {
+      "id": "menu-montana",
+      "name": "Montana",
+      "description": "Pechuga de pollo a la plancha, bacon ahumado, cebolla caramelizada, huevo a la plancha y queso de cabra.",
+      "category": "menus",
+      "price": 9,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-montana.webp"
+    },
+    {
+      "id": "premium-la-intensa",
+      "name": "La Intensa",
+      "description": "Crema de palomitas Jumpers, pollo crujiente, queso provolone, tomate seco, mayonesa kimchi y lechuga. Acompañada de patatas crispers.",
+      "category": "premium",
+      "price": 12.9,
+      "allergens": [
+        "lacteos",
+        "soja",
+        "huevos",
+        "mostaza"
+      ],
+      "isNew": true,
+      "isPopular": true,
+      "isFeatured": true,
+      "featuredOrder": 1,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/premium-la-intensa.webp"
+    },
+    {
+      "id": "premium-la-dona",
+      "name": "La Doña",
+      "description": "Burger de vaca selección 180 g, queso ahumado, pepinillos, salsa Emmy, mermelada de bacon y salsa BibBurger. Acompañada de patatas crispers.",
+      "category": "premium",
+      "price": 12.9,
+      "allergens": [],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/premium-la-dona.webp"
+    },
+    {
+      "id": "premium-la-reverde",
+      "name": "La Reverde",
+      "description": "Burger de vaca selección 180 g, queso ahumado, bacon a la plancha, gublins, mayonesa trufada y crema de pistacho. Acompañada de patatas crispers.",
+      "category": "premium",
+      "price": 12.9,
+      "allergens": [],
+      "isNew": true,
+      "isPopular": true,
+      "isFeatured": true,
+      "featuredOrder": 2,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/premium-la-reverde.webp"
+    },
+    {
+      "id": "premium-la-toxica",
+      "name": "La Tóxica",
+      "description": "Burger de vaca selección 180 g, queso ahumado, bacon a la plancha, medallón de cebolla frita y salsa barbacoa. Acompañada de patatas crispers.",
+      "category": "premium",
+      "price": 12.9,
+      "allergens": [],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/premium-la-toxica.webp"
+    },
+    {
+      "id": "premium-mb-donut-burger",
+      "name": "MB Donut Burger",
+      "description": "Doble burger smasheada de vacuno, bacon a la plancha, pepinillos, doble queso gouda gratinado, salsa americana burger, salsa de dulce de leche y doble donut tostado a la plancha. Acompañada de patatas crispers.",
+      "category": "premium",
+      "price": 12.9,
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/premium-mb-donut-burger.webp"
+    },
+    {
+      "id": "menu-tejano",
+      "name": "Tejano",
+      "description": "Burger de vacuno 180 g cocinada al punto, huevo a la plancha, bacon crujiente, pulled pork, queso fundido y salsa de bacon. Todo en pan dulce brioche.",
+      "category": "premium",
+      "price": 10,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos",
+        "mostaza"
+      ],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-tejano.webp"
+    },
+    {
+      "id": "menu-dakota",
+      "name": "Dakota",
+      "description": "Burger de vacuno 180 g cocinada al punto, rulo de cabra, pimiento caramelizado, cebolla crujiente, bacon a la plancha, queso fundido y salsa americana burger. Todo en pan dulce brioche.",
+      "category": "premium",
+      "price": 11,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos",
+        "mostaza"
+      ],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/menu-dakota.webp"
+    },
+    {
+      "id": "pizza-jamon-york",
+      "name": "Jamón York",
+      "description": "Mozzarella, tomate, orégano y jamón york.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 7.5
+        },
+        {
+          "label": "Familiar",
+          "price": 11
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-carbonara",
+      "name": "Carbonara",
+      "description": "Mozzarella, nata, bacon, orégano y champiñón.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 8.5
+        },
+        {
+          "label": "Familiar",
+          "price": 12
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-barbacoa",
+      "name": "Barbacoa",
+      "description": "Mozzarella, tomate, bacon, orégano, carne de ternera y salsa BBQ.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 8
+        },
+        {
+          "label": "Familiar",
+          "price": 12
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-marinera",
+      "name": "Marinera",
+      "description": "Mozzarella, tomate, salmón, gambas, palitos de mar y atún.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9
+        },
+        {
+          "label": "Familiar",
+          "price": 13
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos",
+        "pescado",
+        "crustaceos"
+      ]
+    },
+    {
+      "id": "pizza-maya",
+      "name": "Maya",
+      "description": "Mozzarella, tomate, ternera, cebolla caramelizada, rulo de cabra y salsa balsámica.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9.5
+        },
+        {
+          "label": "Familiar",
+          "price": 13.5
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-frankfurt",
+      "name": "Frankfurt",
+      "description": "Mozzarella, tomate, orégano y salchichas.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 7.5
+        },
+        {
+          "label": "Familiar",
+          "price": 11
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-burger",
+      "name": "Burger",
+      "description": "Mozzarella, tomate, orégano, burger de ternera, 3 quesos y salsa cheddar.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9.5
+        },
+        {
+          "label": "Familiar",
+          "price": 13.5
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-4-quesos",
+      "name": "4 Quesos",
+      "description": "Mozzarella, tomate, orégano, cheddar, queso gouda y roquefort.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 8.5
+        },
+        {
+          "label": "Familiar",
+          "price": 12
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-peperonni",
+      "name": "Peperonni",
+      "description": "Mozzarella, tomate, orégano y peperonni.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 7.5
+        },
+        {
+          "label": "Familiar",
+          "price": 11
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-kebab",
+      "name": "Kebab",
+      "description": "Mozzarella, tomate, orégano, carne de kebab de pollo y cebolla.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9
+        },
+        {
+          "label": "Familiar",
+          "price": 13
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "pizza-pollo",
+      "name": "Pollo",
+      "description": "Base de nata, mozzarella, cebolla caramelizada, pechuga de pollo y champiñón.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9
+        },
+        {
+          "label": "Familiar",
+          "price": 13
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "pizza-jalapena",
+      "name": "Jalapeña",
+      "description": "Mozzarella, tomate, queso de cabra, rodajas de tomate, ternera y jalapeños.",
+      "category": "pizzas",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 9
+        },
+        {
+          "label": "Familiar",
+          "price": 13
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "comp-bolitas-queso",
+      "name": "Bolitas de queso",
+      "category": "complementos",
+      "tiers": [
+        {
+          "pieces": 6,
+          "price": 3
+        },
+        {
+          "pieces": 9,
+          "price": 4
+        },
+        {
+          "pieces": 12,
+          "price": 4.5
+        },
+        {
+          "pieces": 25,
+          "price": 9
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/comp-bolitas-queso.webp"
+    },
+    {
+      "id": "comp-nuggets-pollo",
+      "name": "Nuggets de pollo",
+      "category": "complementos",
+      "tiers": [
+        {
+          "pieces": 6,
+          "price": 3
+        },
+        {
+          "pieces": 9,
+          "price": 4
+        },
+        {
+          "pieces": 12,
+          "price": 4.5
+        },
+        {
+          "pieces": 25,
+          "price": 9
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/comp-nuggets-pollo.webp"
+    },
+    {
+      "id": "comp-aros-cebolla",
+      "name": "Aros de cebolla",
+      "category": "complementos",
+      "tiers": [
+        {
+          "pieces": 6,
+          "price": 3
+        },
+        {
+          "pieces": 9,
+          "price": 4
+        },
+        {
+          "pieces": 12,
+          "price": 4.5
+        },
+        {
+          "pieces": 25,
+          "price": 9
+        }
+      ],
+      "allergens": [
+        "gluten"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/comp-aros-cebolla.webp"
+    },
+    {
+      "id": "comp-triangulos-cheese",
+      "name": "Triángulos cheese",
+      "category": "complementos",
+      "tiers": [
+        {
+          "pieces": 4,
+          "price": 3.5
+        },
+        {
+          "pieces": 7,
+          "price": 5
+        },
+        {
+          "pieces": 10,
+          "price": 6.5
+        },
+        {
+          "pieces": 18,
+          "price": 11
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/comp-triangulos-cheese.webp"
+    },
+    {
+      "id": "comp-alitas-pollo",
+      "name": "Alitas de pollo",
+      "category": "complementos",
+      "tiers": [
+        {
+          "pieces": 4,
+          "price": 3.5
+        },
+        {
+          "pieces": 7,
+          "price": 5
+        },
+        {
+          "pieces": 10,
+          "price": 6.5
+        },
+        {
+          "pieces": 18,
+          "price": 11
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/comp-alitas-pollo.webp"
+    },
+    {
+      "id": "patatas-fritas",
+      "name": "Patatas fritas",
+      "category": "patatas",
+      "price": 1,
+      "priceNote": "Gratis con tu menú",
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/patatas-fritas.webp"
+    },
+    {
+      "id": "patatas-gajo",
+      "name": "Patatas gajo",
+      "category": "patatas",
+      "price": 2.5,
+      "priceNote": "Con menú +1,00 €",
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/patatas-gajo.webp"
+    },
+    {
+      "id": "patatas-bravas",
+      "name": "Patatas bravas",
+      "category": "patatas",
+      "price": 4.5,
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/patatas-bravas.webp"
+    },
+    {
+      "id": "patatas-cheddar",
+      "name": "Patatas cheddar",
+      "description": "Patatas fritas, bacon y queso cheddar.",
+      "category": "patatas",
+      "price": 3.5,
+      "allergens": [
+        "gluten",
+        "soja"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/patatas-cheddar.webp"
+    },
+    {
+      "id": "patatas-pulled-fries",
+      "name": "Pulled fries",
+      "description": "Patatas crispers, pulled pork y salsa de miel y mostaza.",
+      "category": "patatas",
+      "price": 4,
+      "allergens": [
+        "gluten",
+        "mostaza"
+      ],
+      "isNew": true,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/patatas-pulled-fries.webp"
+    },
+    {
+      "id": "racion-ensalada-mixta",
+      "name": "Ensalada mixta",
+      "description": "Lechuga, tomate, maíz y atún.",
+      "category": "raciones",
+      "price": 3.5,
+      "allergens": [
+        "pescado",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-ensalada-mixta.webp"
+    },
+    {
+      "id": "racion-ensalada-cesar",
+      "name": "Ensalada césar",
+      "description": "Lechuga, tomate, maíz, pechuga de pollo, daditos de queso y salsa césar.",
+      "category": "raciones",
+      "price": 4.5,
+      "allergens": [
+        "lacteos",
+        "huevos",
+        "sulfitos",
+        "mostaza"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-ensalada-cesar.webp"
+    },
+    {
+      "id": "racion-croquetas",
+      "name": "Croquetas y patatas",
+      "category": "raciones",
+      "price": 6,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-croquetas.webp"
+    },
+    {
+      "id": "racion-crujientes-pollo",
+      "name": "Crujientes de pollo y patatas",
+      "category": "raciones",
+      "price": 6,
+      "allergens": [
+        "gluten",
+        "huevos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-crujientes-pollo.webp"
+    },
+    {
+      "id": "racion-plato-kebab",
+      "name": "Plato de kebab",
+      "description": "Lechuga, tomate, cebolla, carne de kebab, patatas y salsa de yogur.",
+      "category": "raciones",
+      "price": 6,
+      "allergens": [
+        "huevos",
+        "soja",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-plato-kebab.webp"
+    },
+    {
+      "id": "racion-nachos-tres-salsas",
+      "name": "Nachos tres salsas",
+      "description": "Nachos mejicanos, guacamole, salsa cheddar, salsa cremfres, ternera, tomate y cebolla.",
+      "category": "raciones",
+      "price": 11,
+      "allergens": [
+        "lacteos",
+        "soja",
+        "gluten",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-nachos-tres-salsas.webp"
+    },
+    {
+      "id": "racion-tequenos",
+      "name": "Tequeños",
+      "description": "Rellenos de queso fundido, con salsa.",
+      "category": "raciones",
+      "price": 6.9,
+      "priceNote": "6 piezas",
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/racion-tequenos.webp"
+    },
+    {
+      "id": "bocapizza",
+      "name": "Bocapizza",
+      "description": "El clásico bocadillo con sabor a pizza.",
+      "category": "bocapizzas",
+      "variants": [
+        {
+          "label": "Normal",
+          "price": 3
+        },
+        {
+          "label": "XL",
+          "price": 5
+        }
+      ],
+      "allergens": [
+        "gluten",
+        "lacteos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/bocapizza.webp"
+    },
+    {
+      "id": "empanada-atun-tomate",
+      "name": "Atún y tomate",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "pescado"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "empanada-atun-pisto",
+      "name": "Atún y pisto",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "pescado"
+      ],
+      "isNew": true
+    },
+    {
+      "id": "empanada-jamon-queso",
+      "name": "Jamón york y queso",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "empanada-jamon-bacon-queso",
+      "name": "Jamón york, bacon y queso",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "empanada-jamon-bacon",
+      "name": "Jamón york y bacon",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos"
+      ]
+    },
+    {
+      "id": "empanada-carbonara",
+      "name": "Empanada de carbonara",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "lacteos"
+      ]
+    },
+    {
+      "id": "empanada-maya",
+      "name": "Empanada maya",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos",
+        "soja",
+        "lacteos",
+        "sulfitos"
+      ]
+    },
+    {
+      "id": "empanada-serranito",
+      "name": "Empanada de serranito",
+      "category": "empanadas",
+      "price": 20,
+      "allergens": [
+        "gluten",
+        "huevos"
+      ]
+    },
+    {
+      "id": "suelta-andorrana",
+      "name": "Hamburguesa Andorrana",
+      "category": "sueltas",
+      "price": 2,
+      "allergens": [
+        "gluten",
+        "soja",
+        "sesamo",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/suelta-andorrana.webp"
+    },
+    {
+      "id": "suelta-andorrana-queso",
+      "name": "Hamburguesa Andorrana con queso",
+      "category": "sueltas",
+      "price": 2.5,
+      "allergens": [
+        "gluten",
+        "soja",
+        "lacteos",
+        "sesamo",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/suelta-andorrana-queso.webp"
+    },
+    {
+      "id": "suelta-perrito-caliente",
+      "name": "Perrito caliente",
+      "category": "sueltas",
+      "price": 2,
+      "allergens": [
+        "gluten",
+        "soja"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/suelta-perrito-caliente.webp"
+    },
+    {
+      "id": "suelta-salchicha-prinzs",
+      "name": "Salchicha Prinzs",
+      "description": "Salchicha gigante, cebolla caramelizada, bacon, queso, cebolla crujiente y mostaza.",
+      "category": "sueltas",
+      "price": 4.5,
+      "allergens": [
+        "gluten",
+        "lacteos",
+        "mostaza"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/suelta-salchicha-prinzs.webp"
+    },
+    {
+      "id": "suelta-campero",
+      "name": "El Campero",
+      "description": "Auténtico bocadillo campero en pan rústico: pechuga de pollo 100 %, bacon, tortilla francesa, jamón serrano, queso, lechuga, tomate, cebolla y mahonesa.",
+      "category": "sueltas",
+      "price": 12,
+      "allergens": [],
+      "isNew": true,
+      "isPopular": true,
+      "isFeatured": true,
+      "featuredOrder": 0,
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/suelta-campero.webp"
+    },
+    {
+      "id": "bebida-cerveza",
+      "name": "Cerveza",
+      "category": "bebidas",
+      "price": 1.5,
+      "allergens": [
+        "gluten",
+        "sulfitos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/bebida-cerveza.webp"
+    },
+    {
+      "id": "bebida-refresco",
+      "name": "Refresco",
+      "category": "bebidas",
+      "price": 1.5,
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/bebida-refresco.webp"
+    },
+    {
+      "id": "bebida-agua",
+      "name": "Agua",
+      "category": "bebidas",
+      "price": 1.5,
+      "allergens": [],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/bebida-agua.webp"
+    },
+    {
+      "id": "postre-tartitas-lotus",
+      "name": "Tartitas Lotus",
+      "description": "Postre casero individual.",
+      "category": "postres",
+      "price": 4,
+      "allergens": [
+        "lacteos",
+        "soja",
+        "gluten"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/postre-tartitas-lotus.webp"
+    },
+    {
+      "id": "postre-natillas-kinder",
+      "name": "Natillas Kinder",
+      "description": "Postre casero individual.",
+      "category": "postres",
+      "price": 4,
+      "allergens": [
+        "lacteos",
+        "frutos_cascara",
+        "soja",
+        "gluten"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/postre-natillas-kinder.webp"
+    },
+    {
+      "id": "postre-tarta-queso",
+      "name": "Tarta de queso",
+      "description": "Postre casero individual.",
+      "category": "postres",
+      "price": 4,
+      "allergens": [
+        "lacteos",
+        "frutos_cascara",
+        "soja",
+        "gluten",
+        "huevos"
+      ],
+      "image": "https://ykjarbsijzutlivfremr.supabase.co/storage/v1/object/public/menu/products/postre-tarta-queso.webp"
+    }
+  ],
+  "menuConfig": {
+    "heading": "¡Configura tu Menú como quieras!",
+    "optionAllergens": [
+      "gluten",
+      "soja",
+      "lacteos",
+      "sulfitos"
+    ],
+    "noFriesDelta": -1,
+    "noDrinkDelta": -1.5,
+    "comboCategory": "menus",
+    "groups": [
+      {
+        "key": "incluye",
+        "heading": "Cada menú incluye",
+        "style": "bullets",
+        "selection": "info",
+        "autoCategories": [
+          "menus"
+        ],
+        "items": [
+          {
+            "title": "Patatas fritas",
+            "detail": "",
+            "delta": 0
+          },
+          {
+            "title": "Bebida (cerveza, refresco o agua)",
+            "detail": "",
+            "delta": 0
+          }
+        ]
+      },
+      {
+        "key": "carne",
+        "heading": "Elige tu carne",
+        "style": "priced",
+        "selection": "single",
+        "autoCategories": [
+          "menus"
+        ],
+        "items": [
+          {
+            "title": "Cerdo",
+            "detail": "La opción de siempre.",
+            "delta": 0
+          },
+          {
+            "title": "Ternera",
+            "detail": "Tierna y con un sabor más intenso.",
+            "delta": 0.5
+          },
+          {
+            "title": "Pollo empanado",
+            "detail": "Crujiente por fuera, jugoso por dentro.",
+            "delta": 0.5
+          },
+          {
+            "title": "Buey",
+            "detail": "Para los que buscan más sabor.",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "key": "extras",
+        "heading": "Extras y mejoras",
+        "style": "priced",
+        "selection": "multiple",
+        "autoCategories": [
+          "menus"
+        ],
+        "items": [
+          {
+            "title": "Cambia las patatas por un complemento",
+            "detail": "Sustituye las patatas fritas por cualquier complemento de la carta.",
+            "delta": 2
+          },
+          {
+            "title": "Ingrediente extra",
+            "detail": "Añade el ingrediente que quieras a tu hamburguesa.",
+            "delta": 0.5
+          },
+          {
+            "title": "Extra de salsa",
+            "detail": "Un chorreón de más de tu salsa favorita.",
+            "delta": 0.5
+          },
+          {
+            "title": "Hazlo Menú XL",
+            "detail": "Más cantidad, mismo sabor.",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "key": "carne-premium",
+        "heading": "Elige tu hamburguesa",
+        "style": "priced",
+        "selection": "single",
+        "autoCategories": [
+          "premium"
+        ],
+        "items": [
+          {
+            "title": "Burger",
+            "detail": "La hamburguesa de siempre.",
+            "delta": 0
+          },
+          {
+            "title": "Smash burger",
+            "detail": "Carne prensada y sellada a la plancha, más fina y crujiente.",
+            "delta": 0
+          },
+          {
+            "title": "Pollo crujiente",
+            "detail": "Pollo empanado crujiente por fuera, jugoso por dentro.",
+            "delta": 0
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Eye } from 'lucide-react';
 import { Section, SectionHeading, Button } from '@/components/ui';
-import { MENU } from '@/features/menu/data/menu';
+import { useMenuData } from '@/features/menu/hooks/useMenuData';
 
 /** El concepto "del mundo": cada menú enlaza a su posición en la Carta. */
 export function WorldTour() {
-  const menus = MENU.filter((p) => p.category === 'menus');
+  const { products } = useMenuData();
+  const menus = products.filter((p) => p.category === 'menus');
 
   return (
     <Section id="del-mundo" spacing="sm">

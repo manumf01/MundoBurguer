@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { ScrollToTop, CookieConsentBanner } from '@/components/common';
-import { useCookieConsent } from '@/lib/cookieConsent';
+import { useCookieConsent } from '@/lib/cookieConsentContext';
 import { trackPageView } from '@/lib/analytics';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';

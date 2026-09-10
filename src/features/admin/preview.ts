@@ -100,7 +100,10 @@ export function toFormValues(p: AdminProduct): ProductFormValues {
     priceKind,
     price: p.price != null ? String(p.price) : '',
     priceNote: p.priceNote ?? '',
-    variants: p.variants.map((v) => ({ label: v.label, price: String(v.price) })),
+    variants: p.variants.map((v) => ({
+      label: v.label,
+      price: String(v.price),
+    })),
     tiers: p.tiers.map((t) => ({
       pieces: String(t.pieces),
       price: String(t.price),

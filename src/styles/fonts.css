@@ -1,14 +1,19 @@
 /* ============================================================================
    Mundo Burguer — tipografías (autoalojadas)
    ----------------------------------------------------------------------------
-   Los .woff2 están en /public/fonts (copiados de los paquetes @fontsource).
-   `font-display: optional` = el navegador usa la fuente solo si ya está lista
-   al primer render; si no, usa la de sistema SIN cambiarla después. Así, al
-   hacer Ctrl+F5 NO se ve el "salto" de una fuente a otra.
-   Además /index.html precarga las variantes "latin" con <link rel=preload>.
+   Los .woff2 están en /public/fonts. /index.html precarga las tres variantes
+   "latin" principales con <link rel=preload>.
+
+   `font-display: swap`: el texto se pinta ya con la fuente de sistema y salta
+   a la de marca en cuanto carga. Antes se usaba `optional`, que evita ese
+   salto pero, si la fuente no llega en ~100 ms tras el primer pintado (típico
+   en móvil con conexión lenta), la descarta para TODA esa carga y los
+   titulares se quedan en Arial. `swap` hace que la identidad visual sea la
+   misma en todos los dispositivos, a cambio de un parpadeo breve en la primera
+   visita (nulo en las siguientes, con la fuente ya cacheada).
 
    ▶ PARA PROBAR UNA FUENTE NUEVA:
-     1. Copia el .woff2 a /public/fonts (o usa @fontsource).
+     1. Copia el .woff2 a /public/fonts.
      2. Añade aquí su @font-face.
      3. Cambia el nombre en los tokens del @theme:
         --font-sans / --font-display / --font-script  (en src/styles/index.css)
@@ -21,7 +26,7 @@
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 100 900;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-tight-latin.woff2') format('woff2-variations');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
@@ -32,7 +37,7 @@
   font-family: 'Inter Tight';
   font-style: normal;
   font-weight: 100 900;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-tight-latin-ext.woff2') format('woff2-variations');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
@@ -43,7 +48,7 @@
   font-family: 'Inter Tight';
   font-style: italic;
   font-weight: 100 900;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/inter-tight-latin-italic.woff2') format('woff2-variations');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
@@ -54,8 +59,9 @@
   font-family: 'Inter Tight';
   font-style: italic;
   font-weight: 100 900;
-  font-display: optional;
-  src: url('/fonts/inter-tight-latin-ext-italic.woff2') format('woff2-variations');
+  font-display: swap;
+  src: url('/fonts/inter-tight-latin-ext-italic.woff2')
+    format('woff2-variations');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
     U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
@@ -67,7 +73,7 @@
   font-family: 'Anton';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/anton-latin.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
@@ -78,7 +84,7 @@
   font-family: 'Anton';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/anton-latin-ext.woff2') format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
@@ -91,7 +97,7 @@
   font-family: 'Yellowtail';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/yellowtail-latin.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
@@ -102,7 +108,7 @@
   font-family: 'Yellowtail';
   font-style: normal;
   font-weight: 400;
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/yellowtail-latin-ext.woff2') format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,

@@ -100,9 +100,7 @@ export function CategoryFormDialog({
                   set({
                     label: e.target.value,
                     slug:
-                      mode === 'create'
-                        ? slugify(e.target.value)
-                        : values.slug,
+                      mode === 'create' ? slugify(e.target.value) : values.slug,
                   })
                 }
                 className={inputClass}

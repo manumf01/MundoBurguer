@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { AlertCircle, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
-export type AlertTone = 'error' | 'warning' | 'success' | 'info';
+type AlertTone = 'error' | 'warning' | 'success' | 'info';
 
 const TONE = {
   error: {
@@ -59,10 +59,10 @@ export function Alert({
         aria-hidden="true"
       />
       <div className="min-w-0 flex-1">
-        {title ? (
-          <p className="font-semibold text-cream">{title}</p>
-        ) : null}
-        <div className={cn('text-cream-dim', title && 'mt-0.5')}>{children}</div>
+        {title ? <p className="font-semibold text-cream">{title}</p> : null}
+        <div className={cn('text-cream-dim', title && 'mt-0.5')}>
+          {children}
+        </div>
       </div>
     </div>
   );

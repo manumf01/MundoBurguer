@@ -1,6 +1,5 @@
-export { Button, buttonVariants, type ButtonProps } from './Button';
-export { Alert, type AlertTone } from './Alert';
-export { Badge, type BadgeProps } from './Badge';
+export { Button } from './Button';
+export { Alert } from './Alert';
 export { NewSeal } from './NewSeal';
 export { PopularSeal } from './PopularSeal';
 export { Container } from './Container';

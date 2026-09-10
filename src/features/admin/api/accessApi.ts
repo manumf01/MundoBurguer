@@ -22,10 +22,7 @@ export async function fetchProfiles(
 }
 
 /** Aprueba una solicitud y le asigna rol. */
-export async function approveProfile(
-  id: string,
-  role: AppRole
-): Promise<void> {
+export async function approveProfile(id: string, role: AppRole): Promise<void> {
   const { error } = await getSupabase()
     .from('profiles')
     .update({
@@ -51,10 +48,7 @@ export async function denyProfile(id: string): Promise<void> {
 }
 
 /** Cambia el rol de una cuenta ya aprobada. */
-export async function setProfileRole(
-  id: string,
-  role: AppRole
-): Promise<void> {
+export async function setProfileRole(id: string, role: AppRole): Promise<void> {
   const { error } = await getSupabase()
     .from('profiles')
     .update({ role })

@@ -32,7 +32,9 @@ export function MenuCategorySection({
         >
           {category.label}
         </h2>
-        <p className="font-script text-2xl text-cream-dim">{category.tagline}</p>
+        <p className="font-script text-2xl text-cream-dim">
+          {category.tagline}
+        </p>
       </Reveal>
 
       <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">

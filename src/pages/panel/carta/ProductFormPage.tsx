@@ -25,7 +25,6 @@ import type { ImageAction } from './ImageField';
 
 export function ProductFormPage() {
   const { slug } = useParams();
-  const mode: 'create' | 'edit' = slug ? 'edit' : 'create';
   const navigate = useNavigate();
   const { status, categories, products, menuConfig, productBySlug, reload } =
     useAdminMenu();
@@ -43,6 +42,10 @@ export function ProductFormPage() {
   const [serverError, setServerError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [seededFor, setSeededFor] = useState(existing?.id ?? null);
+  // Si al crear una comida se guarda la fila pero falla algún "extra" (foto,
+  // destacado, bloques), se recuerda su id para que reintentar el guardado
+  // ACTUALICE esa fila en vez de crear un duplicado.
+  const [createdId, setCreatedId] = useState<string | null>(null);
 
   // Resincroniza el formulario cuando termina de cargar la comida a editar.
   if (existing && existing.id !== seededFor) {
@@ -50,6 +53,8 @@ export function ProductFormPage() {
     setValues(toFormValues(existing));
     setImageAction({ kind: 'keep' });
   }
+
+  const mode: 'create' | 'edit' = slug || createdId ? 'edit' : 'create';
 
   const featured = useMemo(
     () =>
@@ -61,7 +66,7 @@ export function ProductFormPage() {
 
   if (status === 'loading') return <p className="text-cream-dim">Cargando…</p>;
 
-  if (mode === 'edit' && !existing) {
+  if (slug && !existing) {
     return (
       <div className="text-sm text-cream-dim">
         <p>No se ha encontrado esa comida.</p>
@@ -134,13 +139,25 @@ export function ProductFormPage() {
   async function applyImage(savedId: string, savedSlug: string) {
     if (imageAction.kind === 'set') {
       const path = await uploadProductImage(savedSlug, imageAction.blob);
-      await setProductImagePath(savedId, path);
+      try {
+        await setProductImagePath(savedId, path);
+      } catch (err) {
+        // El blob ya está en el bucket pero la fila no lo referencia: se borra
+        // para no dejar un objeto huérfano en storage.
+        await removeProductImageObject(path).catch(() => {});
+        throw err;
+      }
       if (existing?.imagePath && existing.imagePath !== path) {
         await removeProductImageObject(existing.imagePath).catch(() => {});
       }
+      // Aplicada: se libera el object URL y se vuelve a "keep" para que un
+      // reintento del guardado (si falla otro extra) no re-suba la foto.
+      URL.revokeObjectURL(imageAction.previewUrl);
+      setImageAction({ kind: 'keep' });
     } else if (imageAction.kind === 'remove' && existing?.imagePath) {
       await setProductImagePath(savedId, null);
       await removeProductImageObject(existing.imagePath).catch(() => {});
+      setImageAction({ kind: 'keep' });
     }
   }
 
@@ -153,26 +170,57 @@ export function ProductFormPage() {
     }
     setErrors({});
     setSaving(true);
+
+    // 1) Guardado principal (crear/actualizar la fila). Si falla aquí no se ha
+    //    escrito nada: se muestra el error y se sigue en el formulario.
+    let savedId: string;
     try {
-      let savedId: string;
       if (mode === 'create') {
         savedId = await createProduct(result.value);
+        setCreatedId(savedId);
       } else {
-        await updateProduct(existing!.id, result.value);
-        savedId = existing!.id;
+        savedId = existing?.id ?? createdId!;
+        await updateProduct(savedId, result.value);
       }
-      await applyImage(savedId, result.value.slug);
-      await applyFeatured(savedId);
-      await setProductConfigGroups(savedId, values.configGroupIds);
-      await reload();
-      navigate('/panel/carta');
     } catch (err) {
       setServerError(
         err instanceof Error ? err.message : 'No se pudo guardar.'
       );
-    } finally {
       setSaving(false);
+      return;
     }
+
+    // 2) "Extras" independientes. La comida YA está guardada: si uno falla no
+    //    se pierde nada — se avisa de qué no se aplicó y se deja reintentar
+    //    (los pasos son idempotentes al reguardar).
+    const failed: string[] = [];
+    try {
+      await applyImage(savedId, result.value.slug);
+    } catch {
+      failed.push('la foto');
+    }
+    try {
+      await applyFeatured(savedId);
+    } catch {
+      failed.push('los ajustes de «Nuestros imprescindibles»');
+    }
+    try {
+      await setProductConfigGroups(savedId, values.configGroupIds);
+    } catch {
+      failed.push('los bloques de «Configura tu Menú»');
+    }
+
+    await reload().catch(() => {});
+    setSaving(false);
+
+    if (failed.length > 0) {
+      setServerError(
+        `La comida se guardó, pero no se pudo actualizar ${failed.join(' ni ')}. ` +
+          'Revísalo y vuelve a guardar.'
+      );
+      return;
+    }
+    navigate('/panel/carta');
   }
 
   return (
@@ -185,7 +233,9 @@ export function ProductFormPage() {
       </Link>
 
       <h2 className="font-display text-2xl tracking-wide text-cream">
-        {mode === 'create' ? 'Nueva comida' : `Editar · ${existing?.name}`}
+        {mode === 'create'
+          ? 'Nueva comida'
+          : `Editar · ${existing?.name ?? values.name}`}
       </h2>
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">

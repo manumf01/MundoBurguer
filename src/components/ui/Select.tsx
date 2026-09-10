@@ -50,7 +50,11 @@ export function Select({
       >
         <RSelect.Value placeholder={placeholder} />
         <RSelect.Icon>
-          <ChevronDown size={16} className="text-cream-mute" aria-hidden="true" />
+          <ChevronDown
+            size={16}
+            className="text-cream-mute"
+            aria-hidden="true"
+          />
         </RSelect.Icon>
       </RSelect.Trigger>
 

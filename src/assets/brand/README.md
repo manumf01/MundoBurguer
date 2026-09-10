@@ -2,11 +2,11 @@
 
 Material de marca de Mundo Burguer.
 
-| Archivo             | Origen                                                                | Notas                                                                                                                              |
-| -------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `eslogan.webp`       | `src/docs/eslogan.png` (convertido)                                   | Eslogan oficial con corona. Se usa en el hero de inicio.                                                                           |
-| `logo.webp`          | `src/docs/logo-sinfondo.jpg` (fondo de cuadros eliminado por script)  | Logo oficial en color, con transparencia. Es el que pinta `BrandLogo` (variant `badge`): navbar, pie, menú móvil y "Sobre nosotros" (en grande). |
-| `logo-pattern.webp`  | `src/docs/logoblanco.png` (recortado a su caja)                       | Versión monocroma blanca del logo, solo para el patrón repetido de fondo (`.bg-logo-pattern` en `src/styles/index.css`).            |
+| Archivo             | Origen                                                               | Notas                                                                                                                                            |
+| ------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `eslogan.webp`      | `src/docs/eslogan.png` (convertido)                                  | Eslogan oficial con corona. Se usa en el hero de inicio.                                                                                         |
+| `logo.webp`         | `src/docs/logo-sinfondo.jpg` (fondo de cuadros eliminado por script) | Logo oficial en color, con transparencia. Es el que pinta `BrandLogo` (variant `badge`): navbar, pie, menú móvil y "Sobre nosotros" (en grande). |
+| `logo-pattern.webp` | `src/docs/logoblanco.png` (recortado a su caja)                      | Versión monocroma blanca del logo, solo para el patrón repetido de fondo (`.bg-logo-pattern` en `src/styles/index.css`).                         |
 
 La marca del navbar, el pie y el menú móvil se dibuja con
 `src/components/common/BrandLogo.tsx` (`variant="badge"` = logo oficial en

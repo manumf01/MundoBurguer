@@ -79,7 +79,9 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center gap-3 border-t border-hair pt-6 text-xs text-cream-mute sm:flex-row sm:justify-between">
           <p className="flex items-center gap-1.5">
-            <span>© {year} {site.name}. Todos los derechos reservados.</span>
+            <span>
+              © {year} {site.name}. Todos los derechos reservados.
+            </span>
             {features.adminPanel ? (
               <Link
                 to="/panel"
@@ -107,11 +109,7 @@ export function Footer() {
             className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
           >
             {legalNav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="hover:text-cream-dim"
-              >
+              <Link key={item.to} to={item.to} className="hover:text-cream-dim">
                 {item.label}
               </Link>
             ))}

@@ -30,6 +30,9 @@ async function rest<T>(query: string): Promise<T> {
       Authorization: `Bearer ${ANON_KEY}`,
       Accept: 'application/json',
     },
+    // Un backend colgado no debe dejar la carta en "cargando" indefinidamente:
+    // al abortar, `revalidateMenu` cae al snapshot/caché.
+    signal: AbortSignal.timeout(8000),
   });
   if (!res.ok) {
     throw new Error(

@@ -23,9 +23,7 @@ export function CategoryQuickNav({
         if (Date.now() < clickUntil.current) return;
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
-          );
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         const id = visible[0]?.target.id.replace('panelcat-', '');
         if (id) setActiveId(id);
       },

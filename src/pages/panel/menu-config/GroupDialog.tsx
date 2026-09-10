@@ -112,7 +112,11 @@ export function GroupDialog({
             }}
             className="mt-4 flex flex-col gap-4"
           >
-            <Field label="Título del bloque" htmlFor="grp-heading" error={errors.heading}>
+            <Field
+              label="Título del bloque"
+              htmlFor="grp-heading"
+              error={errors.heading}
+            >
               <input
                 id="grp-heading"
                 value={values.heading}
@@ -120,8 +124,7 @@ export function GroupDialog({
                   setValues((v) => ({
                     ...v,
                     heading: e.target.value,
-                    key:
-                      mode === 'create' ? slugify(e.target.value) : v.key,
+                    key: mode === 'create' ? slugify(e.target.value) : v.key,
                   }))
                 }
                 className={inputClass}
@@ -152,7 +155,10 @@ export function GroupDialog({
               hint="Los productos de estas categorías aplican el bloque sin marcarlo uno a uno. Déjalo vacío para asignarlo solo desde cada comida."
             >
               <TagPicker
-                options={categories.map((c) => ({ id: c.slug, label: c.label }))}
+                options={categories.map((c) => ({
+                  id: c.slug,
+                  label: c.label,
+                }))}
                 value={values.autoCategories}
                 onChange={(autoCategories) =>
                   setValues((v) => ({ ...v, autoCategories }))

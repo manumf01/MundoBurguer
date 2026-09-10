@@ -9,7 +9,9 @@ import { Container, Card } from '@/components/ui';
 export function AuthFrame({ children }: { children: ReactNode }) {
   return (
     <Container className="flex min-h-[70vh] items-center justify-center py-16">
-      <Card className="w-full max-w-md p-8 text-center sm:p-10">{children}</Card>
+      <Card className="w-full max-w-md p-8 text-center sm:p-10">
+        {children}
+      </Card>
     </Container>
   );
 }

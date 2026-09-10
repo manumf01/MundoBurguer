@@ -60,9 +60,9 @@ contra el backend en cada carga de página**, con dedupe de 20 s dentro de la
 misma sesión para no repetir peticiones al navegar. Un cambio en el panel se ve
 recargando **una vez** (o al instante en una pestaña nueva). Si el backend no
 responde, cae al snapshot `src/features/menu/data/menu.snapshot.json` incluido
-en el build. `src/features/menu/data/menu.ts` + `menuConfig.ts` (transcritos de
-`src/docs/Z CARTA MB 2024.pdf`) ya **no** se consumen en runtime: son el origen
-del seed y del snapshot `--from-source`.
+en el build. `src/features/menu/data/menu.ts` + `menuConfig.ts` (transcritos a mano de la
+carta oficial) ya **no** se consumen en runtime: son el origen del seed y del
+snapshot `--from-source`.
 
 ## Parte privada de administración (Supabase)
 
@@ -96,7 +96,7 @@ final en vivo (solo informativo, sin carrito).
   ("el administrador decidirá…"). El admin la aprueba en _Solicitudes_.
 - Roles: **`admin`** (todo, + gestión de accesos) y **`editor`** (solo la
   carta). Bootstrap: [EMAIL_ADDRESS]` como admin
-  (`supabase/migrations/…_bootstrap_admin.sql`).
+(`supabase/migrations/…_bootstrap_admin.sql`).
 - La autorización **real** la aplican las políticas **RLS** de Postgres en cada
   consulta, no la UI. Salvaguardas: no puedes cambiarte a ti mismo el
   acceso/rol y siempre debe quedar ≥1 admin.

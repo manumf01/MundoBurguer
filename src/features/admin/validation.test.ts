@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
   capitalizeFirst,
-  sanitizePriceInput,
   titleCase,
   validateCategory,
   validateMenuConfigItem,
@@ -42,19 +41,10 @@ const errs = (v: ProductFormValues) => {
 describe('titleCase', () => {
   it('capitaliza la primera letra de cada palabra', () => {
     expect(titleCase('menú americano')).toBe('Menú Americano');
-    expect(titleCase('hamburguesa  con   queso')).toBe('Hamburguesa  Con   Queso');
+    expect(titleCase('hamburguesa  con   queso')).toBe(
+      'Hamburguesa  Con   Queso'
+    );
     expect(titleCase('LA TóXICA')).toBe('LA TóXICA');
-  });
-});
-
-describe('sanitizePriceInput', () => {
-  it('quita letras y limita a XX,XX', () => {
-    expect(sanitizePriceInput('6a', '6')).toBe('6');
-    expect(sanitizePriceInput('6.5', '6')).toBe('6,5');
-    expect(sanitizePriceInput('12,34', '12,3')).toBe('12,34');
-    expect(sanitizePriceInput('123', '12')).toBe('12');
-    expect(sanitizePriceInput('6,345', '6,34')).toBe('6,34');
-    expect(sanitizePriceInput('', '6')).toBe('');
   });
 });
 
@@ -137,7 +127,9 @@ describe('validateProduct', () => {
 
   it('rechaza alérgeno / guarnición fuera de catálogo', () => {
     // @ts-expect-error valor inválido a propósito
-    expect(errs({ ...base, allergens: ['pepino'] })).toHaveProperty('allergens');
+    expect(errs({ ...base, allergens: ['pepino'] })).toHaveProperty(
+      'allergens'
+    );
     // @ts-expect-error valor inválido a propósito
     expect(errs({ ...base, garnish: ['pepinillo'] })).toHaveProperty('garnish');
   });
@@ -170,7 +162,12 @@ describe('validateCategory', () => {
 
 describe('validateMenuConfigItem', () => {
   it('bullets: solo título, sin detail ni delta', () => {
-    const v = validateMenuConfigItem('bullets', 'patatas fritas', 'ignora', '9');
+    const v = validateMenuConfigItem(
+      'bullets',
+      'patatas fritas',
+      'ignora',
+      '9'
+    );
     expect(v.ok && v.value).toEqual({
       title: 'Patatas fritas',
       detail: '',
@@ -190,16 +187,14 @@ describe('validateMenuConfigItem', () => {
     );
     expect(v.ok && v.value.delta).toBe(0.5);
     expect(v.ok && v.value.title).toBe('Extra salsa');
-    expect(
-      validateMenuConfigItem('priced', 'Buey', 'sabor', '99999').ok
-    ).toBe(false);
+    expect(validateMenuConfigItem('priced', 'Buey', 'sabor', '99999').ok).toBe(
+      false
+    );
   });
 
   it('priced: admite importes negativos (descuentos)', () => {
     const v = validateMenuConfigItem('priced', 'Sin bebida', '', '-1,5');
     expect(v.ok && v.value.delta).toBe(-1.5);
-    expect(
-      validateMenuConfigItem('priced', 'X', '', '-99999').ok
-    ).toBe(false);
+    expect(validateMenuConfigItem('priced', 'X', '', '-99999').ok).toBe(false);
   });
 });

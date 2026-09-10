@@ -16,7 +16,7 @@ export interface ProductCardSlots {
  * grupo sí la tenga, se reserva para todos y así sus tarjetas siguen
  * alineadas entre sí.
  */
-export function getProductCardSlots(products: Product[]): ProductCardSlots {
+function getProductCardSlots(products: Product[]): ProductCardSlots {
   return {
     showDescription: products.some((p) => Boolean(p.description)),
     showAllergens: products.some(

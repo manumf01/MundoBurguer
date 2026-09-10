@@ -79,40 +79,55 @@ export function Seo({
   return null;
 }
 
-/** JSON-LD schema.org/Restaurant para Inicio y Contacto. */
+/**
+ * JSON-LD schema.org/Restaurant para Inicio y Contacto. Se inyecta imperativo
+ * en `<head>` (como el resto de `Seo`) en vez de renderizarlo en el árbol:
+ * React 19 no hoistea un `<script>` inline, y así queda donde convencionalmente
+ * viven los datos estructurados y se retira al desmontar.
+ */
 export function RestaurantJsonLd() {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Restaurant',
-    name: site.name,
-    slogan: site.slogan,
-    description: site.shortDescription,
-    url: site.url,
-    telephone: site.phone.e164,
-    priceRange: site.priceRange,
-    servesCuisine: [...site.cuisine],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: site.address.street,
-      addressLocality: site.address.city,
-      addressRegion: site.address.province,
-      postalCode: site.address.postalCode,
-      addressCountry: 'ES',
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: site.address.geo.lat,
-      longitude: site.address.geo.lng,
-    },
-    openingHours: [...site.hours.schema],
-    sameAs: [site.social.facebook, site.social.instagram],
-    acceptsReservations: false,
-  };
+  useEffect(() => {
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'Restaurant',
+      name: site.name,
+      slogan: site.slogan,
+      description: site.shortDescription,
+      url: site.url,
+      telephone: site.phone.e164,
+      priceRange: site.priceRange,
+      servesCuisine: [...site.cuisine],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.address.street,
+        addressLocality: site.address.city,
+        addressRegion: site.address.province,
+        postalCode: site.address.postalCode,
+        addressCountry: 'ES',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: site.address.geo.lat,
+        longitude: site.address.geo.lng,
+      },
+      openingHours: [...site.hours.schema],
+      sameAs: [site.social.facebook, site.social.instagram],
+      acceptsReservations: false,
+    };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  );
+    let el = document.head.querySelector<HTMLScriptElement>(
+      'script#ld-restaurant'
+    );
+    if (!el) {
+      el = document.createElement('script');
+      el.type = 'application/ld+json';
+      el.id = 'ld-restaurant';
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(data);
+
+    return () => el?.remove();
+  }, []);
+
+  return null;
 }

@@ -47,8 +47,8 @@ export function CropDialog({
             Recorta la foto
           </Dialog.Title>
           <Dialog.Description className="mt-1 text-xs text-cream-mute">
-            Arrastra para reencuadrar y usa el control para acercar. Se guarda en
-            formato 16:10.
+            Arrastra para reencuadrar y usa el control para acercar. Se guarda
+            en formato 16:10.
           </Dialog.Description>
 
           <div className="relative mt-4 aspect-[16/10] w-full overflow-hidden rounded-xl bg-bg">

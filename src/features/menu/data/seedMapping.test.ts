@@ -2,11 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { CATEGORIES, MENU, FEATURED_IDS } from './menu';
 import { menuConfig } from './menuConfig';
 import { ALLERGEN_ORDER } from './allergens';
-import {
-  toCategoryRows,
-  toMenuConfigRows,
-  toProductRows,
-} from './seedMapping';
+import { toCategoryRows, toMenuConfigRows, toProductRows } from './seedMapping';
 
 const allergenCatalog = new Set<string>(ALLERGEN_ORDER);
 const garnishCatalog = new Set(['tomate', 'cebolla', 'lechuga']);
@@ -92,9 +88,7 @@ describe('toMenuConfigRows', () => {
     for (const g of menuConfig.groups) {
       const rows = items.filter((it) => it.group_key === g.key);
       expect(rows).toHaveLength(g.items.length);
-      expect(rows.map((r) => r.sort_order)).toEqual(
-        rows.map((_, i) => i)
-      );
+      expect(rows.map((r) => r.sort_order)).toEqual(rows.map((_, i) => i));
     }
   });
 

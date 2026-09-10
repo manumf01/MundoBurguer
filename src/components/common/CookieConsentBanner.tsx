@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
-import { useCookieConsent } from '@/lib/cookieConsent';
+import { useCookieConsent } from '@/lib/cookieConsentContext';
 import { Button, Container } from '@/components/ui';
 
 function ConsentCheckbox({

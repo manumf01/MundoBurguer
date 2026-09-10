@@ -18,27 +18,18 @@ const MAX_PRICE = 50;
 
 /** "menú americano" -> "Menú Americano" (primera letra de cada palabra). */
 export function titleCase(value: string): string {
-  return value.replace(/(^|\s)(\p{L})/gu, (_, sep: string, ch: string) =>
-    sep + ch.toLocaleUpperCase('es-ES')
+  return value.replace(
+    /(^|\s)(\p{L})/gu,
+    (_, sep: string, ch: string) => sep + ch.toLocaleUpperCase('es-ES')
   );
 }
 
 /** "con doble queso" -> "Con doble queso" (solo la primera letra). */
 export function capitalizeFirst(value: string): string {
-  return value.replace(/^(\s*)(\p{L})/u, (_, sp: string, ch: string) =>
-    sp + ch.toLocaleUpperCase('es-ES')
+  return value.replace(
+    /^(\s*)(\p{L})/u,
+    (_, sp: string, ch: string) => sp + ch.toLocaleUpperCase('es-ES')
   );
-}
-
-/**
- * Deja el texto de un input de precio en la forma `X`, `XX`, `X,X`, `XX,XX`…
- * (1–2 dígitos, separador opcional `,`/`.`, 1–2 decimales). Si `raw` no encaja,
- * devuelve `prev` (así no se pueden teclear letras ni más dígitos).
- */
-export function sanitizePriceInput(raw: string, prev: string): string {
-  const cleaned = raw.replace(/[^\d.,]/g, '').replace('.', ',');
-  if (cleaned === '') return '';
-  return /^\d{1,2}(,\d{0,2})?$/.test(cleaned) ? cleaned : prev;
 }
 
 /** "6,50" o "6.50" -> 6.5. `null` si vacío, `NaN` si no es válido. */
@@ -50,14 +41,10 @@ function parseMoney(raw: string): number | null {
 }
 
 const badMoney = (n: number | null) =>
-  n === null ||
-  Number.isNaN(n) ||
-  n < MIN_PRICE ||
-  n > MAX_PRICE;
+  n === null || Number.isNaN(n) || n < MIN_PRICE || n > MAX_PRICE;
 
 export type ValidationResult =
-  | { ok: true; value: ProductInput }
-  | { ok: false; errors: FieldErrors };
+  { ok: true; value: ProductInput } | { ok: false; errors: FieldErrors };
 
 /**
  * Valida el formulario de comida. La BD sigue siendo la autoridad (CHECK /
@@ -92,7 +79,8 @@ export function validateProduct(v: ProductFormValues): ValidationResult {
     else if (badMoney(p)) errors.price = `Entre ${MIN_PRICE} y ${MAX_PRICE} €.`;
     else price = p;
   } else if (v.priceKind === 'variants') {
-    if (v.variants.length === 0) errors.variants = 'Añade al menos una variante.';
+    if (v.variants.length === 0)
+      errors.variants = 'Añade al menos una variante.';
     v.variants.forEach((row, i) => {
       const label = titleCase(row.label.trim());
       const p = parseMoney(row.price);
@@ -147,8 +135,7 @@ export function validateProduct(v: ProductFormValues): ValidationResult {
 // ── Categorías ─────────────────────────────────────────────────────────────
 
 export type CategoryValidation =
-  | { ok: true; value: CategoryInput }
-  | { ok: false; errors: FieldErrors };
+  { ok: true; value: CategoryInput } | { ok: false; errors: FieldErrors };
 
 export function validateCategory(v: CategoryFormValues): CategoryValidation {
   const errors: FieldErrors = {};
@@ -208,8 +195,7 @@ export function validateMenuConfigItem(
 }
 
 export type GroupValidation =
-  | { ok: true; value: MenuGroupInput }
-  | { ok: false; errors: FieldErrors };
+  { ok: true; value: MenuGroupInput } | { ok: false; errors: FieldErrors };
 
 export function validateGroup(v: GroupFormValues): GroupValidation {
   const errors: FieldErrors = {};

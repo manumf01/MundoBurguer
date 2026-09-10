@@ -109,8 +109,7 @@ export function MenuConfigPage() {
     menuConfig.groups.find((g) => g.id === gid)?.items.map((it) => it.id) ?? [];
 
   const groupsDirty =
-    groupDraft != null &&
-    groupDraft.join(' ') !== serverGroupOrder.join(' ');
+    groupDraft != null && groupDraft.join(' ') !== serverGroupOrder.join(' ');
   const dirtyItemGroupIds = Object.entries(itemDrafts)
     .filter(([gid, ids]) => ids.join(' ') !== serverItemOrder(gid).join(' '))
     .map(([gid]) => gid);

@@ -137,8 +137,7 @@ export function ProductListPage() {
           await setProductFeatured(
             pick.id,
             true,
-            target.featuredOrder ??
-              products.filter((p) => p.isFeatured).length
+            target.featuredOrder ?? products.filter((p) => p.isFeatured).length
           );
         }
       }
@@ -157,8 +156,7 @@ export function ProductListPage() {
     <div className="flex flex-col gap-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-display text-2xl tracking-wide text-cream">
-          Comidas{' '}
-          <span className="text-cream-mute">· {products.length}</span>
+          Comidas <span className="text-cream-mute">· {products.length}</span>
         </h2>
         <Button asChild size="sm">
           <Link to="nueva">
@@ -171,8 +169,8 @@ export function ProductListPage() {
       {actionError ? <Alert tone="error">{actionError}</Alert> : null}
 
       <p className="max-w-prose text-sm text-cream-mute">
-        Así se verá la carta pública. Arrastra las tarjetas para reordenarlas; el
-        nuevo orden no se guarda hasta que pulses «Guardar cambios».
+        Así se verá la carta pública. Arrastra las tarjetas para reordenarlas;
+        el nuevo orden no se guarda hasta que pulses «Guardar cambios».
       </p>
 
       <CategoryQuickNav categories={categories} />

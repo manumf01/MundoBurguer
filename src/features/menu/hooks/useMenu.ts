@@ -1,10 +1,5 @@
 import { useDeferredValue, useMemo, useState } from 'react';
-import type {
-  AllergenId,
-  Category,
-  MenuConfigData,
-  Product,
-} from '../types';
+import type { AllergenId, Category, MenuConfigData, Product } from '../types';
 import { useMenuData } from './useMenuData';
 import type { MenuSource } from '../data/menuStore';
 

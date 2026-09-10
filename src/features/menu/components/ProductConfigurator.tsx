@@ -20,11 +20,7 @@ function DeltaTag({ delta }: { delta: number }) {
     <span
       className={cn(
         'shrink-0 font-display text-sm',
-        delta > 0
-          ? 'text-amber'
-          : delta < 0
-            ? 'text-brand-light'
-            : 'text-lime'
+        delta > 0 ? 'text-amber' : delta < 0 ? 'text-brand-light' : 'text-lime'
       )}
     >
       {delta === 0 ? 'incluido' : formatDelta(delta)}
@@ -76,9 +72,7 @@ export function ProductConfigurator({ product, menuConfig }: Props) {
       const cur = m[key] ?? [];
       return {
         ...m,
-        [key]: cur.includes(idx)
-          ? cur.filter((i) => i !== idx)
-          : [...cur, idx],
+        [key]: cur.includes(idx) ? cur.filter((i) => i !== idx) : [...cur, idx],
       };
     });
 
@@ -88,7 +82,9 @@ export function ProductConfigurator({ product, menuConfig }: Props) {
       className="flex flex-col gap-6 rounded-2xl border border-amber/25 bg-linear-to-b from-brand/15 to-transparent p-5 sm:p-6"
     >
       <div>
-        <h2 className="text-heat text-xl sm:text-2xl">Configúralo a tu gusto</h2>
+        <h2 className="text-heat text-xl sm:text-2xl">
+          Configúralo a tu gusto
+        </h2>
         <p className="mt-1 text-sm text-cream-dim">
           Elige las opciones y verás el precio final. Es orientativo; el pedido
           se hace en el local.

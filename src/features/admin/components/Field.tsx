@@ -32,35 +32,8 @@ export function Field({
       </label>
       {hint ? <p className="mt-0.5 text-xs text-cream-mute">{hint}</p> : null}
       <div className="mt-1.5">{children}</div>
-      {error ? (
-        <p className="mt-1 text-xs text-brand-light">{error}</p>
-      ) : null}
+      {error ? <p className="mt-1 text-xs text-brand-light">{error}</p> : null}
     </div>
-  );
-}
-
-export function Checkbox({
-  id,
-  label,
-  checked,
-  onChange,
-}: {
-  id: string;
-  label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <label htmlFor={id} className="flex items-center gap-2.5 text-sm text-cream">
-      <input
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        className="h-4 w-4 accent-amber"
-      />
-      {label}
-    </label>
   );
 }
 
@@ -79,7 +52,9 @@ export function TagPicker<T extends string>({
   const locked = new Set<T>(lockedIds);
   const toggle = (id: T) => {
     if (locked.has(id)) return;
-    onChange(value.includes(id) ? value.filter((x) => x !== id) : [...value, id]);
+    onChange(
+      value.includes(id) ? value.filter((x) => x !== id) : [...value, id]
+    );
   };
 
   return (

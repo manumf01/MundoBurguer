@@ -85,10 +85,7 @@ export function FeaturedPage() {
 
   const needsReplace = featured.length >= MAX_FEATURED;
   const canSubmit =
-    Boolean(adding) &&
-    (!needsReplace || Boolean(replacing)) &&
-    !busy &&
-    !dirty;
+    Boolean(adding) && (!needsReplace || Boolean(replacing)) && !busy && !dirty;
 
   async function run(fn: () => Promise<void>, fail: string) {
     setActionError(null);
@@ -205,7 +202,9 @@ export function FeaturedPage() {
             {needsReplace
               ? `Ya hay ${MAX_FEATURED} comidas destacadas. Para meter otra, elige a cuál sustituye.`
               : `Puedes añadir hasta llegar a ${MAX_FEATURED}. Quita alguna de la lista para hacer sitio.`}
-            {dirty ? ' Guarda o descarta el orden antes de tocar la lista.' : ''}
+            {dirty
+              ? ' Guarda o descarta el orden antes de tocar la lista.'
+              : ''}
           </p>
         </div>
 

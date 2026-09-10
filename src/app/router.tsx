@@ -8,10 +8,12 @@ import { HomePage } from '@/pages/HomePage';
 import { features } from '@/config/features';
 
 /** Azúcar para una ruta hija del panel que carga un componente de `sections.tsx`. */
-const panelSection = (name: string): RouteObject['lazy'] => async () => {
-  const m = await import('@/pages/panel/sections');
-  return { Component: m[name as keyof typeof m] };
-};
+const panelSection =
+  (name: string): RouteObject['lazy'] =>
+  async () => {
+    const m = await import('@/pages/panel/sections');
+    return { Component: m[name as keyof typeof m] };
+  };
 
 /**
  * Rutas condicionadas por feature flag. Por ahora están vacías: la web es informativa.
@@ -21,25 +23,25 @@ const panelSection = (name: string): RouteObject['lazy'] => async () => {
 const futureRoutes: RouteObject[] = [
   ...(features.onlineOrdering
     ? [
-      {
-        path: 'pedir',
-        lazy: async () => {
-          const m = await import('@/pages/NotFoundPage');
-          return { Component: m.NotFoundPage };
+        {
+          path: 'pedir',
+          lazy: async () => {
+            const m = await import('@/pages/NotFoundPage');
+            return { Component: m.NotFoundPage };
+          },
         },
-      },
-    ]
+      ]
     : []),
   ...(features.reservations
     ? [
-      {
-        path: 'reservar',
-        lazy: async () => {
-          const m = await import('@/pages/NotFoundPage');
-          return { Component: m.NotFoundPage };
+        {
+          path: 'reservar',
+          lazy: async () => {
+            const m = await import('@/pages/NotFoundPage');
+            return { Component: m.NotFoundPage };
+          },
         },
-      },
-    ]
+      ]
     : []),
 ];
 
@@ -92,27 +94,24 @@ const privateRoutes: RouteObject[] = features.adminPanel
                       {
                         index: true,
                         lazy: async () => {
-                          const m = await import(
-                            '@/pages/panel/carta/ProductListPage'
-                          );
+                          const m =
+                            await import('@/pages/panel/carta/ProductListPage');
                           return { Component: m.ProductListPage };
                         },
                       },
                       {
                         path: 'nueva',
                         lazy: async () => {
-                          const m = await import(
-                            '@/pages/panel/carta/ProductFormPage'
-                          );
+                          const m =
+                            await import('@/pages/panel/carta/ProductFormPage');
                           return { Component: m.ProductFormPage };
                         },
                       },
                       {
                         path: ':slug',
                         lazy: async () => {
-                          const m = await import(
-                            '@/pages/panel/carta/ProductFormPage'
-                          );
+                          const m =
+                            await import('@/pages/panel/carta/ProductFormPage');
                           return { Component: m.ProductFormPage };
                         },
                       },
@@ -121,27 +120,24 @@ const privateRoutes: RouteObject[] = features.adminPanel
                   {
                     path: 'categorias',
                     lazy: async () => {
-                      const m = await import(
-                        '@/pages/panel/categorias/CategoryListPage'
-                      );
+                      const m =
+                        await import('@/pages/panel/categorias/CategoryListPage');
                       return { Component: m.CategoryListPage };
                     },
                   },
                   {
                     path: 'menu',
                     lazy: async () => {
-                      const m = await import(
-                        '@/pages/panel/menu-config/MenuConfigPage'
-                      );
+                      const m =
+                        await import('@/pages/panel/menu-config/MenuConfigPage');
                       return { Component: m.MenuConfigPage };
                     },
                   },
                   {
                     path: 'destacados',
                     lazy: async () => {
-                      const m = await import(
-                        '@/pages/panel/destacados/FeaturedPage'
-                      );
+                      const m =
+                        await import('@/pages/panel/destacados/FeaturedPage');
                       return { Component: m.FeaturedPage };
                     },
                   },

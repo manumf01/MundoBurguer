@@ -1,5 +1,7 @@
 export const IMAGE_ASPECT = 16 / 10;
-export const MAX_INPUT_BYTES = 15 * 1024 * 1024; // 15 MB (fotos de móvil)
+/** Tope de la foto de entrada (fotos de móvil). Fuente única para UI y validación. */
+export const MAX_INPUT_MB = 15;
+const MAX_INPUT_BYTES = MAX_INPUT_MB * 1024 * 1024;
 const OUTPUT_WIDTH = 1200;
 const OUTPUT_QUALITY = 0.82;
 
@@ -25,7 +27,7 @@ export function checkImageFile(file: File): string | null {
     return `Ese tipo de archivo (${file.type}) no se admite. Usa una foto JPG, PNG, WebP o HEIC.`;
   }
   if (file.size > MAX_INPUT_BYTES) {
-    return 'La foto pesa demasiado (máx. 15 MB). Prueba con una versión más ligera.';
+    return `La foto pesa demasiado (máx. ${MAX_INPUT_MB} MB). Prueba con una versión más ligera.`;
   }
   return null;
 }

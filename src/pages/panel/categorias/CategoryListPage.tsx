@@ -124,7 +124,8 @@ export function CategoryListPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-display text-2xl tracking-wide text-cream">
-          Categorías <span className="text-cream-mute">· {categories.length}</span>
+          Categorías{' '}
+          <span className="text-cream-mute">· {categories.length}</span>
         </h2>
         <Button
           size="sm"
@@ -140,10 +141,7 @@ export function CategoryListPage() {
 
       {actionError ? <Alert tone="error">{actionError}</Alert> : null}
 
-      <SortableList
-        ids={shown.map((c) => c.slug)}
-        onReorder={handleReorder}
-      >
+      <SortableList ids={shown.map((c) => c.slug)} onReorder={handleReorder}>
         <ul className="flex flex-col gap-2">
           {shown.map((category, i) => {
             const n = countByCat.get(category.id) ?? 0;

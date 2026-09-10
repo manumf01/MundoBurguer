@@ -202,10 +202,7 @@ export function SortableCard({
     <li
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition }}
-      className={cn(
-        'relative h-full',
-        isDragging && 'z-10 opacity-70'
-      )}
+      className={cn('relative h-full', isDragging && 'z-10 opacity-70')}
     >
       <button
         type="button"

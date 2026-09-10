@@ -67,15 +67,19 @@ describe('mapProduct', () => {
 
   it('image_path -> URL absoluta de Storage; sin imagen -> sin clave', () => {
     expect(
-      mapProduct(dbProduct({ image_path: 'products/menu-americano.webp' }), STORAGE)
-        .image
+      mapProduct(
+        dbProduct({ image_path: 'products/menu-americano.webp' }),
+        STORAGE
+      ).image
     ).toBe(`${STORAGE}/products/menu-americano.webp`);
     expect(mapProduct(dbProduct(), STORAGE)).not.toHaveProperty('image');
   });
 
   it('category incrustada -> slug; null -> ""', () => {
     expect(mapProduct(dbProduct(), STORAGE).category).toBe('menus');
-    expect(mapProduct(dbProduct({ category: null }), STORAGE).category).toBe('');
+    expect(mapProduct(dbProduct({ category: null }), STORAGE).category).toBe(
+      ''
+    );
   });
 
   it('flags e info opcional solo cuando aplican', () => {

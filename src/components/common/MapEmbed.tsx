@@ -1,7 +1,7 @@
 import { MapPin } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { site } from '@/config/site';
-import { useCookieConsent } from '@/lib/cookieConsent';
+import { useCookieConsent } from '@/lib/cookieConsentContext';
 import { Button } from '@/components/ui';
 
 interface MapEmbedProps {
@@ -28,7 +28,10 @@ export function MapEmbed({
           'flex w-full flex-col items-center justify-center gap-3 p-6 text-center',
           className
         )}
-        style={{ height: height ? `${height}px` : undefined, minHeight: height ? undefined : 220 }}
+        style={{
+          height: height ? `${height}px` : undefined,
+          minHeight: height ? undefined : 220,
+        }}
       >
         <MapPin className="text-amber" size={26} aria-hidden="true" />
         <p className="max-w-xs text-sm text-cream-dim">
@@ -42,7 +45,10 @@ export function MapEmbed({
             size="sm"
             variant="outline"
             onClick={() =>
-              savePreferences({ analytics: consent?.analytics ?? false, maps: true })
+              savePreferences({
+                analytics: consent?.analytics ?? false,
+                maps: true,
+              })
             }
           >
             Aceptar y ver el mapa

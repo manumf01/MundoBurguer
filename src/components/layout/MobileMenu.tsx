@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { NavLink } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
@@ -12,6 +12,20 @@ import { Button } from '@/components/ui';
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+
+  // El contenido del diálogo es `md:hidden`, pero Radix mantiene el scroll
+  // bloqueado y el foco atrapado mientras siga "abierto". Si la ventana se
+  // ensancha a `md` con el menú abierto (rotar tablet, devtools), se cierra.
+  useEffect(() => {
+    if (!open) return;
+    const mq = window.matchMedia('(min-width: 48rem)');
+    const closeIfDesktop = () => {
+      if (mq.matches) setOpen(false);
+    };
+    closeIfDesktop();
+    mq.addEventListener('change', closeIfDesktop);
+    return () => mq.removeEventListener('change', closeIfDesktop);
+  }, [open]);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>

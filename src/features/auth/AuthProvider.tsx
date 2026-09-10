@@ -123,8 +123,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => sub.subscription.unsubscribe();
   }, [loadProfile]);
 
-  // Cierre de sesión por inactividad: 30 min sin interacción en la parte
-  // privada (este proveedor solo está montado en `/acceso` y `/panel`).
+  // Cierre de sesión por inactividad tras `IDLE_MS` (15 min) sin interacción en
+  // la parte privada (este proveedor solo está montado en `/acceso` y `/panel`).
   useEffect(() => {
     if (!isSupabaseConfigured || !hasSession) return;
 
@@ -141,7 +141,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false;
     };
 
-    // Al entrar: si el último uso fue hace más de 30 min (p. ej. pestaña
+    // Al entrar: si el último uso fue hace más de `IDLE_MS` (p. ej. pestaña
     // cerrada un buen rato), se cierra sesión ya.
     if (check()) return;
 
@@ -151,9 +151,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Heartbeat: marca "última vez visto" (≈ hora de desconexión) mientras el
     // panel está abierto y en primer plano.
     void pingLastSeen();
-    const pingInterval = window.setInterval(() => {
-      if (document.visibilityState === 'visible') void pingLastSeen();
-    }, 2 * 60 * 1000);
+    const pingInterval = window.setInterval(
+      () => {
+        if (document.visibilityState === 'visible') void pingLastSeen();
+      },
+      2 * 60 * 1000
+    );
 
     const mark = () => {
       const now = Date.now();

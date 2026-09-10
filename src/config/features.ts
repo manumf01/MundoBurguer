@@ -19,7 +19,3 @@ export const features = {
    */
   adminPanel: true,
 } as const;
-
-export type FeatureName = keyof typeof features;
-
-export const isEnabled = (name: FeatureName): boolean => features[name];

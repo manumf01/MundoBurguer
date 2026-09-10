@@ -1,6 +1,5 @@
 export { AdminMenuProvider } from './AdminMenuProvider';
 export { useAdminMenu } from './useAdminMenu';
-export { EMPTY_CONFIG } from './adminMenuContext';
 export {
   validateProduct,
   validateCategory,
@@ -8,7 +7,6 @@ export {
   validateGroup,
   titleCase,
   capitalizeFirst,
-  sanitizePriceInput,
   type ValidationResult,
   type CategoryValidation,
   type MenuConfigItemValidation,
@@ -23,7 +21,7 @@ export {
 } from './preview';
 export {
   IMAGE_ASPECT,
-  MAX_INPUT_BYTES,
+  MAX_INPUT_MB,
   checkImageFile,
   toCroppableUrl,
   cropToImage,
@@ -54,7 +52,6 @@ export {
   deleteMenuGroup,
   reorderMenuGroups,
   reorderFeatured,
-  friendlyError,
 } from './api/adminMenuApi';
 export {
   fetchProfiles,
@@ -68,7 +65,6 @@ export { SortableList, SortableRow, SortableCard } from './components/Sortable';
 export { UnsavedBar } from './components/UnsavedBar';
 export {
   Field,
-  Checkbox,
   TagPicker,
   inputClass,
   textareaClass,

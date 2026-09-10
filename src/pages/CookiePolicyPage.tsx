@@ -1,7 +1,7 @@
 import { Seo } from '@/lib/seo';
 import { LegalPageLayout, LegalSection } from '@/components/common';
 import { Button } from '@/components/ui';
-import { useCookieConsent } from '@/lib/cookieConsent';
+import { useCookieConsent } from '@/lib/cookieConsentContext';
 import { site } from '@/config/site';
 
 interface CookieRow {
@@ -95,8 +95,8 @@ export function CookiePolicyPage() {
             Las cookies son pequeños archivos de texto (o tecnologías
             equivalentes, como el almacenamiento local del navegador) que un
             sitio web guarda en tu dispositivo cuando lo visitas. Sirven, por
-            ejemplo, para recordar tus preferencias o para elaborar
-            estadísticas de uso.
+            ejemplo, para recordar tus preferencias o para elaborar estadísticas
+            de uso.
           </p>
         </LegalSection>
 
@@ -104,15 +104,15 @@ export function CookiePolicyPage() {
           <p>
             Esta Política de cookies es aplicable al sitio web {site.url},
             titularidad de {site.legal.companyName}. Algunas de las cookies
-            descritas las instalan proveedores externos (Google) cuando
-            activas voluntariamente las categorías correspondientes.
+            descritas las instalan proveedores externos (Google) cuando activas
+            voluntariamente las categorías correspondientes.
           </p>
         </LegalSection>
 
         <LegalSection title="3. Gestiona tus preferencias">
           <p>
-            Puedes cambiar tu decisión sobre cookies en cualquier momento,
-            de forma tan sencilla como la primera vez:
+            Puedes cambiar tu decisión sobre cookies en cualquier momento, de
+            forma tan sencilla como la primera vez:
           </p>
           <Button type="button" variant="outline" size="sm" onClick={openPanel}>
             Abrir preferencias de cookies
@@ -126,19 +126,19 @@ export function CookiePolicyPage() {
         <LegalSection title="4. Cookies necesarias (siempre activas)">
           <p>
             No requieren tu consentimiento porque son imprescindibles para el
-            funcionamiento básico del Sitio: sin ellas no podríamos recordar
-            tu elección sobre cookies.
+            funcionamiento básico del Sitio: sin ellas no podríamos recordar tu
+            elección sobre cookies.
           </p>
           <CookieTable rows={necessaryCookies} />
         </LegalSection>
 
         <LegalSection title="5. Cookies de análisis (requieren tu consentimiento)">
           <p>
-            Usamos Google Analytics 4 para conocer, de forma agregada,
-            cuántas personas visitan la web y qué páginas les interesan más.
-            Estas cookies solo se instalan si activas la categoría
-            "Análisis" en el banner o panel de cookies; hasta entonces, el
-            script de Google Analytics ni siquiera se carga en tu navegador.
+            Usamos Google Analytics 4 para conocer, de forma agregada, cuántas
+            personas visitan la web y qué páginas les interesan más. Estas
+            cookies solo se instalan si activas la categoría "Análisis" en el
+            banner o panel de cookies; hasta entonces, el script de Google
+            Analytics ni siquiera se carga en tu navegador.
           </p>
           <CookieTable rows={analyticsCookies} />
         </LegalSection>
@@ -146,43 +146,42 @@ export function CookiePolicyPage() {
         <LegalSection title="6. Cookies del mapa (requieren tu consentimiento)">
           <p>
             En la página de Contacto mostramos un mapa interactivo de Google
-            Maps con nuestra ubicación. Si no activas la categoría "Mapa",
-            en su lugar verás un aviso con un enlace directo para abrir
-            nuestra ubicación en Google Maps sin que se instale ninguna
-            cookie de terceros.
+            Maps con nuestra ubicación. Si no activas la categoría "Mapa", en su
+            lugar verás un aviso con un enlace directo para abrir nuestra
+            ubicación en Google Maps sin que se instale ninguna cookie de
+            terceros.
           </p>
           <CookieTable rows={mapCookies} />
         </LegalSection>
 
         <LegalSection title="7. Base legal">
           <p>
-            El uso de cookies de análisis y de mapa se basa en tu
-            consentimiento expreso (art. 22.2 LSSI-CE y art. 6.1.a RGPD), que
-            solicitamos mediante un banner en el que aceptar y rechazar
-            tienen la misma visibilidad, sin casillas premarcadas, y que
-            puedes retirar en cualquier momento con el mismo nivel de
-            facilidad con el que lo diste.
+            El uso de cookies de análisis y de mapa se basa en tu consentimiento
+            expreso (art. 22.2 LSSI-CE y art. 6.1.a RGPD), que solicitamos
+            mediante un banner en el que aceptar y rechazar tienen la misma
+            visibilidad, sin casillas premarcadas, y que puedes retirar en
+            cualquier momento con el mismo nivel de facilidad con el que lo
+            diste.
           </p>
         </LegalSection>
 
         <LegalSection title="8. Cómo bloquear o eliminar cookies desde tu navegador">
           <p>
-            Además de nuestro panel de preferencias, puedes eliminar o
-            bloquear las cookies ya instaladas desde la configuración de
-            privacidad o de cookies de tu propio navegador (Chrome, Firefox,
-            Safari, Edge u otro). Ten en cuenta que bloquear todas las
-            cookies puede afectar al funcionamiento de otras páginas web que
-            visites, aunque no impide el uso básico de este Sitio.
+            Además de nuestro panel de preferencias, puedes eliminar o bloquear
+            las cookies ya instaladas desde la configuración de privacidad o de
+            cookies de tu propio navegador (Chrome, Firefox, Safari, Edge u
+            otro). Ten en cuenta que bloquear todas las cookies puede afectar al
+            funcionamiento de otras páginas web que visites, aunque no impide el
+            uso básico de este Sitio.
           </p>
         </LegalSection>
 
         <LegalSection title="9. Más información">
           <p>
-            Para conocer cómo tratamos tus datos personales en general,
-            consulta nuestra{' '}
-            <a href="/politica-privacidad">Política de privacidad</a>. Para
-            los datos identificativos del titular de este Sitio, consulta el{' '}
-            <a href="/aviso-legal">Aviso legal</a>.
+            Para conocer cómo tratamos tus datos personales en general, consulta
+            nuestra <a href="/politica-privacidad">Política de privacidad</a>.
+            Para los datos identificativos del titular de este Sitio, consulta
+            el <a href="/aviso-legal">Aviso legal</a>.
           </p>
         </LegalSection>
       </LegalPageLayout>

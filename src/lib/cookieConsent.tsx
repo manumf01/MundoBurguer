@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { site } from '@/config/site';
 import {
   clearAnalyticsCookies,
@@ -12,36 +6,22 @@ import {
   loadGoogleAnalytics,
   setAnalyticsConsent,
 } from './analytics';
+import {
+  CookieConsentContext,
+  type ConsentChoices,
+  type CookieConsentContextValue,
+} from './cookieConsentContext';
+
+export type { ConsentChoices } from './cookieConsentContext';
 
 const STORAGE_KEY = 'mb-cookie-consent';
 /** Súbelo si cambian las categorías: fuerza a volver a preguntar a todo el mundo. */
 const CONSENT_VERSION = 1;
 
-export interface ConsentChoices {
-  analytics: boolean;
-  maps: boolean;
-}
-
 interface StoredConsent extends ConsentChoices {
   version: number;
   decidedAt: string;
 }
-
-interface CookieConsentContextValue {
-  /** null mientras la persona usuaria no ha decidido nada todavía. */
-  consent: ConsentChoices | null;
-  hasDecided: boolean;
-  isPanelOpen: boolean;
-  acceptAll: () => void;
-  rejectAll: () => void;
-  savePreferences: (choices: ConsentChoices) => void;
-  openPanel: () => void;
-  closePanel: () => void;
-}
-
-const CookieConsentContext = createContext<CookieConsentContextValue | null>(
-  null
-);
 
 function readStoredConsent(): StoredConsent | null {
   try {
@@ -120,14 +100,4 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
       {children}
     </CookieConsentContext.Provider>
   );
-}
-
-export function useCookieConsent(): CookieConsentContextValue {
-  const ctx = useContext(CookieConsentContext);
-  if (!ctx) {
-    throw new Error(
-      'useCookieConsent debe usarse dentro de <CookieConsentProvider>'
-    );
-  }
-  return ctx;
 }

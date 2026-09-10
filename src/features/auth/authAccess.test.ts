@@ -24,9 +24,9 @@ describe('resolveAccess', () => {
   });
 
   it('loading mientras se resuelve la sesión', () => {
-    expect(
-      resolveAccess({ ...base, loading: true, profile: null })
-    ).toEqual({ status: 'loading' });
+    expect(resolveAccess({ ...base, loading: true, profile: null })).toEqual({
+      status: 'loading',
+    });
   });
 
   it('sin sesión -> anonymous', () => {

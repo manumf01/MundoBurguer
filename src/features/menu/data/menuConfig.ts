@@ -54,7 +54,11 @@ export const menuConfig = {
       autoCategories: ['menus'],
       items: [
         { title: 'Cerdo', detail: 'La opción de siempre.', delta: 0 },
-        { title: 'Ternera', detail: 'Tierna y con un sabor más intenso.', delta: 0.5 },
+        {
+          title: 'Ternera',
+          detail: 'Tierna y con un sabor más intenso.',
+          delta: 0.5,
+        },
         {
           title: 'Pollo empanado',
           detail: 'Crujiente por fuera, jugoso por dentro.',
@@ -86,7 +90,11 @@ export const menuConfig = {
           detail: 'Un chorreón de más de tu salsa favorita.',
           delta: 0.5,
         },
-        { title: 'Hazlo Menú XL', detail: 'Más cantidad, mismo sabor.', delta: 2.0 },
+        {
+          title: 'Hazlo Menú XL',
+          detail: 'Más cantidad, mismo sabor.',
+          delta: 2.0,
+        },
       ],
     },
     {

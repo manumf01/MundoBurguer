@@ -138,7 +138,7 @@ export async function fetchAdminMenu(): Promise<{
     sb
       .from('menu_config_meta')
       .select('heading,option_allergens,no_fries_delta,no_drink_delta')
-      .single(),
+      .maybeSingle(),
     sb
       .from('menu_config_groups')
       .select('id,key,heading,style,selection,auto_categories,sort_order')
@@ -164,11 +164,18 @@ export async function fetchAdminMenu(): Promise<{
         a.sortOrder - b.sortOrder
     );
 
-  const meta = metaRes.data as {
+  // `maybeSingle()`: si aún no existe la fila única de meta (BD recién creada),
+  // se degrada con valores por defecto en vez de romper todo el panel.
+  const meta = (metaRes.data as {
     heading: string;
     option_allergens: string[] | null;
     no_fries_delta: number | string | null;
     no_drink_delta: number | string | null;
+  } | null) ?? {
+    heading: '',
+    option_allergens: null,
+    no_fries_delta: null,
+    no_drink_delta: null,
   };
   const allItems = (itemsRes.data as DbMenuConfigItemRow[]).map((r) => ({
     id: r.id,
@@ -215,32 +222,55 @@ export function friendlyError(error: unknown): Error {
     return new Error('Ese identificador ya está en uso.');
   }
   if (code === '23503') {
-    return new Error('La categoría seleccionada ya no existe. Recarga la página.');
+    return new Error(
+      'La categoría seleccionada ya no existe. Recarga la página.'
+    );
   }
   if (code === '23514' || msg.includes('check constraint')) {
     return new Error(
       'Algún dato no cumple las reglas (revisa los precios, las longitudes de texto y los alérgenos).'
     );
   }
-  if (code === '42501' || msg.includes('row-level security') || msg.includes('permission denied')) {
+  if (
+    code === '42501' ||
+    msg.includes('row-level security') ||
+    msg.includes('permission denied')
+  ) {
     return new Error('No tienes permiso para hacer este cambio.');
   }
-  if (code === 'PGRST202' || (msg.includes('function') && msg.includes('not') && msg.includes('found'))) {
+  if (
+    code === 'PGRST202' ||
+    (msg.includes('function') && msg.includes('not') && msg.includes('found'))
+  ) {
     return new Error(
       'Falta aplicar la última migración de la base de datos (ejecuta «supabase db push»).'
     );
   }
-  if (code === 'PGRST301' || msg.includes('jwt expired') || msg.includes('token')) {
+  if (
+    code === 'PGRST301' ||
+    msg.includes('jwt expired') ||
+    msg.includes('token')
+  ) {
     return new Error('Tu sesión ha caducado. Vuelve a iniciar sesión.');
   }
   if (msg.includes('mime type') || msg.includes('not supported')) {
     return new Error('Ese formato de imagen no se admite.');
   }
-  if (msg.includes('exceeded') || msg.includes('maximum allowed size') || msg.includes('too large')) {
+  if (
+    msg.includes('exceeded') ||
+    msg.includes('maximum allowed size') ||
+    msg.includes('too large')
+  ) {
     return new Error('La imagen es demasiado grande.');
   }
-  if (msg.includes('failed to fetch') || msg.includes('networkerror') || msg.includes('network')) {
-    return new Error('No hay conexión con el servidor. Revisa tu conexión e inténtalo de nuevo.');
+  if (
+    msg.includes('failed to fetch') ||
+    msg.includes('networkerror') ||
+    msg.includes('network')
+  ) {
+    return new Error(
+      'No hay conexión con el servidor. Revisa tu conexión e inténtalo de nuevo.'
+    );
   }
   return new Error(
     e.message
@@ -249,17 +279,37 @@ export function friendlyError(error: unknown): Error {
   );
 }
 
+/**
+ * Siguiente `sort_order` de una tabla: `max(sort_order) + 1` entre las filas
+ * visibles. Con `max+1` (en vez de `count`) un alta no colisiona con filas
+ * existentes cuando hay huecos por borrados. Sigue habiendo una carrera
+ * check-then-insert, asumible en un panel de un solo administrador.
+ */
+async function nextSortOrder(
+  table: 'products' | 'categories' | 'menu_config_items' | 'menu_config_groups',
+  opts: { column?: string; value?: string; softDeleted?: boolean } = {}
+): Promise<number> {
+  let q = getSupabase().from(table).select('sort_order');
+  if (opts.softDeleted) q = q.is('deleted_at', null);
+  if (opts.column && opts.value !== undefined)
+    q = q.eq(opts.column, opts.value);
+  const { data } = await q
+    .order('sort_order', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  return ((data as { sort_order: number } | null)?.sort_order ?? -1) + 1;
+}
+
 /** Crea la comida y devuelve su id. */
 export async function createProduct(input: ProductInput): Promise<string> {
-  const sb = getSupabase();
-  const { count } = await sb
+  const sort_order = await nextSortOrder('products', {
+    column: 'category_id',
+    value: input.category_id,
+    softDeleted: true,
+  });
+  const { data, error } = await getSupabase()
     .from('products')
-    .select('id', { count: 'exact', head: true })
-    .eq('category_id', input.category_id)
-    .is('deleted_at', null);
-  const { data, error } = await sb
-    .from('products')
-    .insert({ ...input, sort_order: count ?? 0 })
+    .insert({ ...input, sort_order })
     .select('id')
     .single();
   if (error) throw friendlyError(error);
@@ -359,14 +409,10 @@ export async function setProductImagePath(
 // ── Categorías ─────────────────────────────────────────────────────────────
 
 export async function createCategory(input: CategoryInput): Promise<void> {
-  const sb = getSupabase();
-  const { count } = await sb
+  const sort_order = await nextSortOrder('categories', { softDeleted: true });
+  const { error } = await getSupabase()
     .from('categories')
-    .select('id', { count: 'exact', head: true })
-    .is('deleted_at', null);
-  const { error } = await sb
-    .from('categories')
-    .insert({ ...input, sort_order: count ?? 0 });
+    .insert({ ...input, sort_order });
   if (error) throw friendlyError(error);
 }
 
@@ -441,27 +487,23 @@ export async function setProductConfigGroups(
 export async function createMenuConfigItem(
   input: MenuConfigItemInput
 ): Promise<void> {
-  const sb = getSupabase();
-  const { count } = await sb
+  const sort_order = await nextSortOrder('menu_config_items', {
+    column: 'group_id',
+    value: input.group_id,
+  });
+  const { error } = await getSupabase()
     .from('menu_config_items')
-    .select('id', { count: 'exact', head: true })
-    .eq('group_id', input.group_id);
-  const { error } = await sb
-    .from('menu_config_items')
-    .insert({ ...input, sort_order: count ?? 0 });
+    .insert({ ...input, sort_order });
   if (error) throw friendlyError(error);
 }
 
 // ── Bloques de "Configura tu Menú" ────────────────────────────────────────
 
 export async function createMenuGroup(input: MenuGroupInput): Promise<void> {
-  const sb = getSupabase();
-  const { count } = await sb
+  const sort_order = await nextSortOrder('menu_config_groups');
+  const { error } = await getSupabase()
     .from('menu_config_groups')
-    .select('id', { count: 'exact', head: true });
-  const { error } = await sb
-    .from('menu_config_groups')
-    .insert({ ...input, sort_order: count ?? 0 });
+    .insert({ ...input, sort_order });
   if (error) throw friendlyError(error);
 }
 
@@ -523,9 +565,7 @@ export async function deleteMenuConfigItem(id: string): Promise<void> {
 }
 
 /** Reordena los ítems de un `kind` (no hay índice único en sort_order). */
-export async function reorderMenuConfigItems(
-  ids: string[]
-): Promise<void> {
+export async function reorderMenuConfigItems(ids: string[]): Promise<void> {
   const sb = getSupabase();
   const results = await Promise.all(
     ids.map((id, i) =>

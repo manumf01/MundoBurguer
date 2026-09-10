@@ -1,7 +1,12 @@
-import { useRef, useState, type DragEvent } from 'react';
+import { useEffect, useRef, useState, type DragEvent } from 'react';
 import { ImagePlus, Loader2, RotateCcw, Trash2, Undo2 } from 'lucide-react';
 import { cn } from '@/lib/cn';
-import { ConfirmDialog, checkImageFile, toCroppableUrl } from '@/features/admin';
+import {
+  ConfirmDialog,
+  MAX_INPUT_MB,
+  checkImageFile,
+  toCroppableUrl,
+} from '@/features/admin';
 import { CropDialog } from './CropDialog';
 
 export type ImageAction =
@@ -27,6 +32,30 @@ export function ImageField({
   const [loading, setLoading] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
   const [dragging, setDragging] = useState(false);
+
+  // Al abandonar el formulario sin guardar, revoca cualquier object URL que
+  // siga vivo (los flujos normales de recorte/deshacer ya lo hacen en su
+  // sitio; revocar dos veces es inofensivo). El ref se mantiene al día en un
+  // efecto para que la limpieza de desmontaje vea el último valor.
+  const liveUrls = useRef<{ crop: string | null; preview: string | null }>({
+    crop: null,
+    preview: null,
+  });
+  useEffect(() => {
+    liveUrls.current = {
+      crop: cropSrc,
+      preview: action.kind === 'set' ? action.previewUrl : null,
+    };
+  });
+  useEffect(
+    () => () => {
+      if (liveUrls.current.crop) URL.revokeObjectURL(liveUrls.current.crop);
+      if (liveUrls.current.preview) {
+        URL.revokeObjectURL(liveUrls.current.preview);
+      }
+    },
+    []
+  );
 
   const shownUrl =
     action.kind === 'set'
@@ -75,7 +104,7 @@ export function ImageField({
     <div>
       <span className="block text-sm font-semibold text-cream">Foto</span>
       <p className="mt-0.5 text-xs text-cream-mute">
-        JPG, PNG, WebP o HEIC · máx. 8 MB · se recorta a 16:10.
+        JPG, PNG, WebP o HEIC · máx. {MAX_INPUT_MB} MB · se recorta a 16:10.
       </p>
 
       <input

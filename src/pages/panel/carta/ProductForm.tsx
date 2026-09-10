@@ -218,9 +218,7 @@ export function ProductForm({
         </Field>
       ) : null}
 
-      {serverError ? (
-        <Alert tone="error">{serverError}</Alert>
-      ) : null}
+      {serverError ? <Alert tone="error">{serverError}</Alert> : null}
 
       <div className="flex gap-3">
         <Button type="submit" disabled={saving}>

@@ -66,9 +66,9 @@ export function Hero() {
             variants={fadeUp}
             className="max-w-xl text-lg text-cream-dim"
           >
-            Menús del mundo, hamburguesas premium, pizzas de masa artesana y empanadas caseras en el
-            corazón de Moriles. Ven a disfrutarlas con nosotros o pídelas a
-            domicilio.
+            Menús del mundo, hamburguesas premium, pizzas de masa artesana y
+            empanadas caseras en el corazón de Moriles. Ven a disfrutarlas con
+            nosotros o pídelas a domicilio.
           </motion.p>
 
           <motion.div

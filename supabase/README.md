@@ -37,7 +37,7 @@ migrations/
 
 ### Opción A — SQL Editor (recomendada, sin instalar nada)
 
-1. Supabase → **SQL Editor** → *New query*.
+1. Supabase → **SQL Editor** → _New query_.
 2. Abre cada fichero de `migrations/` **en orden** (0001 → 0018), pega su
    contenido y pulsa **Run**. Uno por uno.
 3. Los ficheros son re-ejecutables (usan `create ... if not exists`,
@@ -107,17 +107,17 @@ select email, status, role from public.profiles order by requested_at;
 
 ## Modelo de datos (resumen)
 
-| Tabla | Para qué |
-| --- | --- |
-| `profiles` | Una fila por cuenta Google que intentó entrar. `status` (pending/approved/denied) + `role` (admin/editor). |
-| `bootstrap_admins` | Correos con acceso preconcedido. Solo SQL / service_role. |
-| `categories` | Categorías de la carta. Slug único, `sort_order`, `deleted_at` (borrado lógico). |
-| `products` | Comidas. Precio único **o** `variants` **o** `tiers` (exactamente uno). `visible`, `is_featured`+`featured_order` (máx. 4), `deleted_at`. |
-| `menu_config_meta` | Fila única: `heading`, `option_allergens`, y los descuentos del combo `no_fries_delta` / `no_drink_delta` + `combo_category_slug`. |
-| `menu_config_groups` | Bloques de "Configura tu Menú". `selection` (info / single / multiple), `style`, `sort_order`, `auto_categories` (slugs donde el bloque se aplica solo). |
-| `menu_config_items` | Opciones de cada bloque (`group_id`): `title`, `detail`, `delta` (puede ser negativo = descuento), `sort_order`. |
-| `product_config_groups` | Qué bloques de opciones ve cada producto en su vista de detalle (`product_id` × `group_id`). |
-| `audit_log` | Quién/cuándo/qué. Lo escriben triggers; lo lee solo el admin. |
+| Tabla                   | Para qué                                                                                                                                                 |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profiles`              | Una fila por cuenta Google que intentó entrar. `status` (pending/approved/denied) + `role` (admin/editor).                                               |
+| `bootstrap_admins`      | Correos con acceso preconcedido. Solo SQL / service_role.                                                                                                |
+| `categories`            | Categorías de la carta. Slug único, `sort_order`, `deleted_at` (borrado lógico).                                                                         |
+| `products`              | Comidas. Precio único **o** `variants` **o** `tiers` (exactamente uno). `visible`, `is_featured`+`featured_order` (máx. 4), `deleted_at`.                |
+| `menu_config_meta`      | Fila única: `heading`, `option_allergens`, y los descuentos del combo `no_fries_delta` / `no_drink_delta` + `combo_category_slug`.                       |
+| `menu_config_groups`    | Bloques de "Configura tu Menú". `selection` (info / single / multiple), `style`, `sort_order`, `auto_categories` (slugs donde el bloque se aplica solo). |
+| `menu_config_items`     | Opciones de cada bloque (`group_id`): `title`, `detail`, `delta` (puede ser negativo = descuento), `sort_order`.                                         |
+| `product_config_groups` | Qué bloques de opciones ve cada producto en su vista de detalle (`product_id` × `group_id`).                                                             |
+| `audit_log`             | Quién/cuándo/qué. Lo escriben triggers; lo lee solo el admin.                                                                                            |
 
 ### Datos derivados del frontend
 
